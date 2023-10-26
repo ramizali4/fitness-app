@@ -1,18 +1,31 @@
-import { StatusBar } from "expo-status-bar";
+import { useCallback } from "react";
 import { StyleSheet, Text, View } from "react-native";
+import { useFonts, loadAsync } from "expo-font";
+//import * as SplashScreen from "expo-splash-screen";
+import StartupScreen from "./Screens/StartupScreen";
+import WelcomeScreen from "./Screens/WelcomeScreen";
 
 export default function App() {
-	return (
-		<View style={styles.container}>
-			<Text>Open up App.js to start working on your app!</Text>
-			<StatusBar style="auto" />
-		</View>
-	);
+	const [fontsLoaded] = useFonts({
+		Integralcf_bold: require("./config/FONTSPRING/Fontspring-DEMO-integralcf-bold.otf"),
+		integralcf_extrabold: require("./config/FONTSPRING/Fontspring-DEMO-integralcf-extrabold.otf"),
+		Integralcf_medium: require("./config/FONTSPRING/Fontspring-DEMO-integralcf-medium.otf"),
+		Integralcf_heavy: require("./config/FONTSPRING/Fontspring-DEMO-integralcf-heavy.otf"),
+	});
+	const onLayoutRootView = useCallback(async () => {
+		if (fontsLoaded) {
+			await SplashScreen.hideAsync();
+		}
+	}, [fontsLoaded]);
+	if (!fontsLoaded) {
+		return null;
+	}
+	return <WelcomeScreen/>
 }
 
 const styles = StyleSheet.create({
 	container: {
-		flex: 2,
+		flex: 1,
 		backgroundColor: "#fff",
 		alignItems: "center",
 		justifyContent: "center",
