@@ -15,7 +15,7 @@ const styles = StyleSheet.create({
 		fontFamily: "Integralcf_medium",
 		fontSize: 20,
 		color: colors.black,
-		height: 20,
+		height: 26,
 	},
 });
 export default MyText;

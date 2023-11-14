@@ -7,4 +7,6 @@ export default {
 	darkBlack: "#606060",
 	moderateBlack: "#808080",
 	pureWhite: "#FFF",
+	main: "#ABF8FC",
+	main: "#F5F5F5",
 };

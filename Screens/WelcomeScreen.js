@@ -37,7 +37,7 @@ export class WelcomeScreen extends Component {
 						<MyButton
 							color={colors.asliBlack}
 							bordercolor="red"
-							title="Get Started"
+							title="REGISTER NOW"
 							textColor={colors.pureWhite}
 						/>
 						<TouchableOpacity>
