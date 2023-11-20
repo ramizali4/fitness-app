@@ -31,6 +31,7 @@ function ExerciseScreen({ ExerciseName }) {
 	const animRef = useRef < LottieView > null;
 	const animationProgress = useRef(new Animated.Value(0));
 	const [gifPath, setgifPath] = useState("");
+	//const lottieRef = (useRef < AnimatedLottieView) | (null > null);
 
 	useEffect(() => {
 		setgifPath(require("../assets/Gifs/Push-ups.json"));
@@ -47,26 +48,36 @@ function ExerciseScreen({ ExerciseName }) {
 		// 	console.log("denied");
 		// }
 	}, []);
+	// useEffect(() => {
+	// 	if (lottieRef.current) {
+	// 		setTimeout(() => {
+	// 			lottieRef.current?.reset();
+	// 			lottieRef.current?.play();
+	// 		}, 100);
+	// 	}
+	// }, [lottieRef.current]);
 
 	return (
 		<Screen style={{ backgroundColor: colors.main }}>
 			{/* Header */}
-			{/* <View style={styles.header}>
+			<View style={styles.header}>
 				<BackBtn size={values.smallbtn} />
 				<MyText style={styles.headertxt}>{ExerciseName}</MyText>
-			</View> */}
+			</View>
 
 			{/* Exercise*/}
 			<View style={styles.exerciseContainer}>
 				{/* A viewable gif on repeat */}
 
 				{gifPath ? (
-					<AnimatedLottieView
-						//	ref={animationRef}
+					<LottieView
 						style={styles.exerciseGIF}
+						//ref={lottieRef}
 						source={gifPath}
 						autoPlay={true}
 						loop={true}
+						speed={1}
+						renderMode={"SOFTWARE"}
 					/>
 				) : (
 					<AnimatedLottieView
@@ -78,30 +89,27 @@ function ExerciseScreen({ ExerciseName }) {
 						progress={animationProgress.current}
 					/>
 				)}
-				<LottieView
-					ref={animationRef}
-					source={require("../assets/Gifs/Loading hands.json")} // Replace with the loading animation JSON file
-					autoPlay={true} // Auto-play the loading animation
-					loop={true}
-					style={styles.exerciseGIF}
-					//progress={animationProgress.current}
-				/>
-				<LottieView
-					source={require("../assets/Gifs/Loading hands.json")} // Replace with the loading animation JSON file
-					autoPlay={true} // Auto-play the loading animation
-					loop={true}
-					style={styles.exerciseGIF}
-				/>
-				{/* Description on how to do the specfic exercise */}
+			</View>
+			{/* Description on how to do the specfic exercise */}
+			<View
+				style={{
+					alignItems: "center",
+					justifyContent: "space-between",
+					//	backgroundColor: "red",
+					flex: 0.7,
+				}}
+			>
+				<MyText>Lorem Ipsum dolor</MyText>
 				<MiniText style={styles.Descriptiontxt}>
 					Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
 					eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
 					minim veniam, quis nostrud exercitation
 				</MiniText>
 				{/* A random motivation text */}
+
 				<MiniText style={styles.motivationtxt}>
-					"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-					eiusmod tempor incididunt."
+					Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed eiusmod
+					tempor incididunt.
 				</MiniText>
 			</View>
 			{/* <Button title="Play" onPress={() => animationRef.current.play()} /> */}
@@ -112,21 +120,22 @@ function ExerciseScreen({ ExerciseName }) {
 const styles = StyleSheet.create({
 	Descriptiontxt: {
 		width: "80%",
-		alignSelf: "center",
+		//	alignSelf: "center",
 		textAlign: "center",
 		//backgroundColor: "lightyellow",
 		fontSize: 12,
 		fontFamily: "Integralcf_regular",
 	},
 	exerciseContainer: {
-		flex: 0.9,
+		flex: 0.4,
 		paddingHorizontal: 10,
 		backgroundColor: colors.main,
-		//	backgroundColor: "lightgreen",
+		//backgroundColor: "lightgreen",
 	},
 	exerciseGIF: {
+		//flex: 0.6,
 		width: "100%",
-		height: "40%",
+		height: "100%",
 		//backgroundColor: "lightblue",
 		alignSelf: "center",
 	},
@@ -146,10 +155,11 @@ const styles = StyleSheet.create({
 	},
 	motivationtxt: {
 		width: "80%",
-		alignSelf: "center",
+		//	alignSelf: "center",
 		textAlign: "center",
 		//backgroundColor: "lightyellow",
-		fontSize: 12,
+		fontFamily: "Integralcf_bold",
+		fontSize: 14,
 	},
 });
 export default ExerciseScreen;

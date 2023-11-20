@@ -10,6 +10,7 @@ import HomeScreen from "./Screens/HomeScreen";
 import ExerciseScreen from "./Screens/ExerciseScreen";
 import ExerciseTypeScreen from "./Screens/ExerciseTypeScreen";
 import LottieView from "lottie-react-native";
+import ExercisesListScreen from "./Screens/ExercisesListScreen";
 
 export default function App() {
 	const [fontsLoaded] = useFonts({
@@ -32,7 +33,7 @@ export default function App() {
 	// 	animationRef.current?.play();
 	// }, []);
 
-	return <ExerciseTypeScreen />;
+	return <ExercisesListScreen ListType="Intermediate" />;
 	//<ExerciseScreen ExerciseName="Push Ups" />;
 	// 	<AnimatedLottieView
 	// 		ref={animationRef}
