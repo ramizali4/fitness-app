@@ -26,88 +26,106 @@ const lottieData = [
 		name: "T Plane",
 		source: require("../assets/Gifs/T Plane.json"),
 	},
+	{
+		name: "Split Jump",
+		source: require("../assets/Gifs/Split Jump.json"),
+	},
+	{
+		name: "Push ups",
+		source: require("../assets/Gifs/Push-ups.json"),
+	},
+	{
+		name: "Squats",
+		source: require("../assets/Gifs/Squats.json"),
+	},
+	{
+		name: "T Plane",
+		source: require("../assets/Gifs/T Plane.json"),
+	},
+	{
+		name: "Split Jump",
+		source: require("../assets/Gifs/Split Jump.json"),
+	},
+	{
+		name: "Push ups",
+		source: require("../assets/Gifs/Push-ups.json"),
+	},
+	{
+		name: "Squats",
+		source: require("../assets/Gifs/Squats.json"),
+	},
+	{
+		name: "T Plane",
+		source: require("../assets/Gifs/T Plane.json"),
+	},
 	// Add more items as needed
 ];
-const ExercisesListScreen = ({ ListType }) => {
+const ExercisesListScreen = ({ listType, navigation, route }) => {
 	return (
 		<Screen>
 			<View style={styles.header}>
-				<BackBtn size={values.smallbtn} />
-				<MyText style={styles.headertxt}>{ListType}</MyText>
+				<BackBtn size={values.smallbtn} onPress={() => navigation.goBack()} />
+				<MyText>{route.params.listType}</MyText>
 			</View>
-			<View style={styles.boxContainer}>
-				<AnimatedLottieView
-					style={styles.gifContainer}
-					autoPlay
-					source={require("../assets/Gifs/Push-ups.json")}
-				/>
-				<MiniText
-					style={{
-						height: 20,
-						//backgroundColor: colors.asliBlack,
-						color: colors.pureWhite,
-					}}
-				>
-					Push Ups
-				</MiniText>
-			</View>
+			{/* <View>
+			</View> */}
 			<FlatList
 				style={styles.listContainer}
 				data={lottieData}
 				numColumns={2}
 				renderItem={({ item }) => (
-					<ExerciseComponent name={item.name} source={item.source} />
+					<ExerciseComponent
+						name={item.name}
+						source={item.source}
+						onPress={() => {
+							navigation.navigate("ExerciseScreen", {
+								exerciseName: item.name,
+								gifPath: item.source,
+							});
+						}}
+					/>
 				)}
 			/>
-
-			{/* <FlatList style={styles.container} /> */}
-			{/* <View style={styles.container}></View> */}
 		</Screen>
 	);
 };
 const styles = StyleSheet.create({
-	boxContainer: {
-		width: 155,
-		height: 155,
-		backgroundColor: colors.asliBlack,
-		borderRadius: values.borderRadius,
-		borderWidth: 0.5,
-		borderTopWidth: 2,
-		borderColor: colors.asliBlack,
-		justifyContent: "flex-end",
-		alignItems: "center",
-		overflow: "hidden",
-	},
-	gifContainer: {
-		width: 140,
-		height: 140,
-		borderRadius: values.borderRadius,
-		borderColor: colors.asliBlack,
-		backgroundColor: colors.asliBlack,
-		overflow: "hidden",
-	},
-	container: {
-		backgroundColor: "lightgreen",
-		flex: 0.9,
-	},
+	// boxContainer: {
+	// 	width: 155,
+	// 	height: 155,
+	// 	backgroundColor: colors.asliBlack,
+	// 	borderRadius: values.borderRadius,
+	// 	borderWidth: 0.5,
+	// 	borderTopWidth: 2,
+	// 	borderColor: colors.asliBlack,
+	// 	justifyContent: "flex-end",
+	// 	alignItems: "center",
+	// 	overflow: "hidden",
+	// },
+	// gifContainer: {
+	// 	width: 140,
+	// 	height: 140,
+	// 	borderRadius: values.borderRadius,
+	// 	borderColor: colors.asliBlack,
+	// 	backgroundColor: colors.asliBlack,
+	// 	overflow: "hidden",
+	// },
+
 	header: {
-		// /	backgroundColor: colors.black,
+		//backgroundColor: colors.black,
 		flex: 0.1,
 		flexDirection: "row",
 		alignItems: "center",
-		paddingHorizontal: 10,
-	},
-	headertxt: {
-		alignSelf: "center",
-		textAlign: "center",
-		//backgroundColor: "red",
-		position: "absolute",
-		width: "100%",
+		justifyContent: "center",
+		//	paddingHorizontal: 10,
+		marginHorizontal: 10,
 	},
 	listContainer: {
-		backgroundColor: "red",
+		//backgroundColor: "red",
 		marginHorizontal: 10,
 		//	justifyContent: "center",
+		alignSelf: "center",
+		flex: 0.9,
 	},
 });
 export default ExercisesListScreen;

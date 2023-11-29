@@ -2,6 +2,7 @@ import { View, Text, TouchableOpacity } from "react-native";
 import React from "react";
 import colors from "../config/colors";
 import { AntDesign, Ionicons } from "@expo/vector-icons";
+import values from "../config/values";
 
 const BackBtn = ({ size, onPress }) => {
 	return (
@@ -13,13 +14,15 @@ const BackBtn = ({ size, onPress }) => {
 				backgroundColor: colors.asliBlack,
 				alignItems: "center",
 				justifyContent: "center",
+				position: "absolute",
+				left: values.btnMargin,
 			}}
 			onPress={onPress}
 		>
 			<Ionicons
 				name="ios-chevron-back"
 				size={size / 1.5}
-				color={colors.pureWhite}
+				color={colors.secondary}
 			/>
 		</TouchableOpacity>
 	);

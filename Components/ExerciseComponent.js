@@ -1,4 +1,4 @@
-import { View, Text, StyleSheet } from "react-native";
+import { View, Text, StyleSheet, TouchableOpacity } from "react-native";
 import React from "react";
 import Screen from "../Components/Screen";
 import BackBtn from "../Components/BackBtn";
@@ -8,9 +8,9 @@ import MiniText from "../Components/MiniText";
 import AnimatedLottieView from "lottie-react-native";
 import colors from "../config/colors";
 
-const ExerciseComponent = ({ name, source }) => {
+const ExerciseComponent = ({ name, source, onPress }) => {
 	return (
-		<View style={styles.boxContainer}>
+		<TouchableOpacity onPress={onPress} style={styles.boxContainer}>
 			<AnimatedLottieView
 				style={styles.gifContainer}
 				autoPlay
@@ -19,33 +19,31 @@ const ExerciseComponent = ({ name, source }) => {
 			<MiniText style={{ height: 20, color: colors.pureWhite }}>
 				{name}
 			</MiniText>
-		</View>
+		</TouchableOpacity>
 	);
 };
 const styles = StyleSheet.create({
 	boxContainer: {
-		width: 155,
-		height: 155,
-		backgroundColor: colors.asliBlack,
+		width: 150,
+		height: 150,
+		backgroundColor: colors.secondary,
 		borderRadius: values.borderRadius,
 		borderWidth: 0.5,
 		borderTopWidth: 2,
-		borderColor: colors.asliBlack,
+		borderColor: colors.secondary,
 		justifyContent: "flex-end",
 		alignItems: "center",
 		overflow: "hidden",
+		margin: 10,
+		elevation: 5,
 	},
 	gifContainer: {
-		width: 140,
-		height: 140,
+		width: 150,
+		height: 150,
 		borderRadius: values.borderRadius,
 		borderColor: colors.asliBlack,
 		backgroundColor: colors.asliBlack,
 		overflow: "hidden",
-	},
-	container: {
-		backgroundColor: "lightgreen",
-		flex: 0.9,
 	},
 });
 export default ExerciseComponent;

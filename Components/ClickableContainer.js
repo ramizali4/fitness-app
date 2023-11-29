@@ -11,12 +11,16 @@ import colors from "../config/colors";
 import MyText from "../Components/MyText";
 import values from "../config/values";
 
-function ClickableContainer({ title, img, style, ...otherProps }) {
+function ClickableContainer({ title, img, style, onPress, ...otherProps }) {
 	return (
-		<TouchableOpacity style={styles.container}>
+		<TouchableOpacity style={styles.container} onPress={onPress}>
 			<Image source={img} style={styles.container} />
 			<View style={styles.title}>
-				<MyText>{title}</MyText>
+				<MyText
+				//style={{ color: colors.secondary }}
+				>
+					{title}
+				</MyText>
 			</View>
 		</TouchableOpacity>
 	);
@@ -29,10 +33,14 @@ const styles = StyleSheet.create({
 		height: 185,
 		backgroundColor: colors.asliBlack,
 		borderRadius: values.borderRadius,
+		borderWidth: 3,
+		borderColor: colors.secondary,
 		marginBottom: 20,
+		elevation: 10,
 	},
 	title: {
 		backgroundColor: "white",
+		//backgroundColor: colors.secondary,
 		//	width: "60%",
 		paddingBottom: 5,
 		paddingHorizontal: 4,

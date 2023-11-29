@@ -23,23 +23,32 @@ import ClickableContainer from "../Components/ClickableContainer";
 import { LineChart } from "react-native-chart-kit";
 import BackBtn from "../Components/BackBtn";
 
-function ExerciseTypeScreen({ screenName }) {
+function ExerciseTypeScreen({ screenName, navigation, route }) {
 	const imagepath1 = require("../assets/hopefilmphoto-QiYZCKJQMck-unsplash.jpg");
-	const imagepath2 = require("../assets/carl-barcelo-nqUHQkuVj3c-unsplash.jpg");
-	const imagepath3 = require("../assets/mil-tech-pharma-ltd-ozSG9X4Av6A-unsplash.jpg");
-
+	const imagepath2 = require("../assets/victor-freitas-WvDYdXDzkhs-unsplash.jpg");
+	const imagepath3 = require("../assets/rect1.png");
+	/* 2. Get the param */
+	const { screenName_ } = route.params.screenName;
 	return (
 		<Screen style={{ backgroundColor: colors.main }}>
 			{/* Header */}
 			<View style={styles.header}>
-				<BackBtn size={values.smallbtn} />
-				<MyText style={styles.headertxt}>{screenName}</MyText>
+				<BackBtn size={values.smallbtn} onPress={() => navigation.goBack()} />
+				<MyText style={styles.headertxt}>{route.params.screenName}</MyText>
 			</View>
-
 			{/* Exercises */}
 			<View style={styles.exerciseContainer}>
 				<View>
-					<ClickableContainer title="Beginner" img={imagepath1} />
+					<ClickableContainer
+						title="Beginner"
+						img={imagepath1}
+						onPress={() => {
+							navigation.navigate("ExercisesListScreen", {
+								screenName: route.params.screenName,
+								listType: "Beginner",
+							});
+						}}
+					/>
 					<ClickableContainer title="Intermediate" img={imagepath2} />
 					<ClickableContainer title="Advanced" img={imagepath3} />
 				</View>
@@ -54,27 +63,29 @@ const styles = StyleSheet.create({
 		width: 330,
 		height: 180,
 		borderRadius: 20,
-		backgroundColor: colors.main,
 	},
 	exerciseContainer: {
 		flex: 0.6,
 		paddingHorizontal: 10,
-		backgroundColor: colors.main,
 	},
 	header: {
 		//backgroundColor: colors.red,
 		flex: 0.1,
 		flexDirection: "row",
-		//justifyContent: "space-around",
+		justifyContent: "center",
 		alignItems: "center",
 		marginHorizontal: 10,
 	},
 	headertxt: {
-		alignSelf: "center",
-		textAlign: "center",
-		width: "100%",
-		//backgroundColor: "cyan",
-		position: "absolute",
+		//	alignSelf: "center",
+		//	textAlign: "center",
+		//	width: "100%",
+		//	backgroundColor: "cyan",
+		//	position: "absolute",
+		textDecorationColor: colors.secondary,
+		textDecorationLine: "underline",
+
+		height: 28,
 	},
 	levelContainer: {
 		width: 75,

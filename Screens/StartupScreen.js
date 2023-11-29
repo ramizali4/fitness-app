@@ -9,26 +9,45 @@ import MyText from "../Components/MyText";
 import MiniText from "../Components/MiniText";
 import values from "../config/values";
 
-export class StartupScreen extends Component {
-	render() {
-		return (
-			<Screen style={styles.screen}>
-				{/* <View style={{ backgroundColor: "pink", marginVertical: "25%" }}> */}
-				<Image source={img} style={styles.img} />
-				<TextHeader>APP NAME</TextHeader>
-				<MiniText>Lorem Ipsum</MiniText>
-				{/* </View> */}
-				<MyButton
-					color={colors.asliBlack}
-					bordercolor="red"
-					title="Get Started"
-					textColor={colors.pureWhite}
-					style={{ position: "absolute", bottom: values.bottomMargin }}
-				/>
-			</Screen>
-		);
-	}
-}
+const StartupScreen = () => {
+	return (
+		<Screen style={styles.screen}>
+			{/* <View style={{ backgroundColor: "pink", marginVertical: "25%" }}> */}
+			<Image source={img} style={styles.img} />
+			<TextHeader>APP NAME</TextHeader>
+			<MiniText>Lorem Ipsum</MiniText>
+			{/* </View> */}
+			<MyButton
+				color={colors.asliBlack}
+				bordercolor="red"
+				title="Get Started"
+				textColor={colors.pureWhite}
+				style={{ position: "absolute", bottom: values.bottomMargin }}
+			/>
+		</Screen>
+	);
+};
+
+// export class StartupScreen extends Component {
+// 	render() {
+// 		return (
+// 			<Screen style={styles.screen}>
+// 				{/* <View style={{ backgroundColor: "pink", marginVertical: "25%" }}> */}
+// 				<Image source={img} style={styles.img} />
+// 				<TextHeader>APP NAME</TextHeader>
+// 				<MiniText>Lorem Ipsum</MiniText>
+// 				{/* </View> */}
+// 				<MyButton
+// 					color={colors.asliBlack}
+// 					bordercolor="red"
+// 					title="Get Started"
+// 					textColor={colors.pureWhite}
+// 					style={{ position: "absolute", bottom: values.bottomMargin }}
+// 				/>
+// 			</Screen>
+// 		);
+// 	}
+// }
 const styles = StyleSheet.create({
 	img: {
 		width: 200,

@@ -9,39 +9,35 @@ import {
 	Dimensions,
 } from "react-native";
 import React, { Component } from "react";
-import img from "../assets/icon.png";
-import Screen from "../Components/Screen";
-import MyButton from "../Components/MyButton";
-import colors from "../config/colors";
-import TextHeader from "../Components/TextHeader";
-import MyText from "../Components/MyText";
-import MiniText from "../Components/MiniText";
-import values from "../config/values";
-import MyTextInput from "../Components/MyTextInput";
-import { AntDesign } from "@expo/vector-icons";
-import ClickableContainer from "../Components/ClickableContainer";
+import Constants from "expo-constants";
 import { LineChart } from "react-native-chart-kit";
+import values from "../config/values";
+import colors from "../config/colors";
 
-function HomeScreen() {
-	const imagepath3 = require("../assets/icon.png");
+import Screen from "../Components/Screen";
+import TextHeader from "../Components/TextHeader";
+import ClickableContainer from "../Components/ClickableContainer";
+
+function HomeScreen({ navigation }) {
 	const imagepath1 = require("../assets/street-workout-2629182_1920.jpg");
 	const imagepath2 = require("../assets/carl-barcelo-nqUHQkuVj3c-unsplash.jpg");
+	const imagepath3 = require("../assets/icon.png");
 
 	return (
-		<Screen>
+		<Screen style={styles.screen}>
 			{/* Header */}
 			<View style={styles.header}>
 				<TextHeader style={{ color: colors.white, fontSize: 30 }}>
-					LOREM IPSUM
+					Welcome
 				</TextHeader>
 				<View style={styles.levelContainer}>
-					<Text>Level </Text>
-					<Text>2</Text>
+					<Text style={{ color: colors.pureWhite }}>Level </Text>
+					<Text style={{ color: colors.pureWhite }}>2</Text>
 				</View>
 			</View>
 			{/* Graph */}
 			<View style={styles.graphContainer}>
-				<LineChart
+				{/* <LineChart
 					data={{
 						labels: ["Mon", "Tues", "Wed", "Thurs", "Fri", "Sat", "Sun"],
 						datasets: [
@@ -63,7 +59,7 @@ function HomeScreen() {
 					yAxisSuffix="k"
 					yAxisInterval={1} // optional, defaults to 1
 					chartConfig={{
-						backgroundColor: "#e26a00",
+						backgroundColor: colors.secondary,
 						backgroundGradientFrom: "#fb8c00",
 						backgroundGradientTo: "#ffa726",
 						decimalPlaces: 2, // optional, defaults to 2dp
@@ -83,6 +79,41 @@ function HomeScreen() {
 						marginVertical: 8,
 						borderRadius: 16,
 					}}
+				/> */}
+				<LineChart
+					data={{
+						labels: ["Mon", "Tues", "Wed", "Thurs", "Fri", "Sat", "Sun"],
+						datasets: [
+							{
+								data: [0, 4, 8, 12, 16, 20],
+							},
+						],
+					}}
+					width={Dimensions.get("window").width - 20} // from react-native
+					height={215}
+					//	yAxisLabel="No."
+					//	yAxisInterval={1} // optional, defaults to 1
+					chartConfig={{
+						backgroundColor: colors.secondary,
+						backgroundGradientFrom: colors.secondary,
+						backgroundGradientTo: colors.secondary,
+						decimalPlaces: 0, // optional, defaults to 2dp
+						color: (opacity = 1) => `rgba(255, 255, 255, ${opacity})`,
+						labelColor: (opacity = 1) => `rgba(255, 255, 255, ${opacity})`,
+						style: {
+							borderRadius: 16,
+						},
+						propsForDots: {
+							r: "6",
+							strokeWidth: "2",
+							stroke: colors.asliBlack,
+						},
+					}}
+					bezier
+					style={{
+						marginVertical: 8,
+						borderRadius: values.borderRadius,
+					}}
 				/>
 			</View>
 			{/* Exercises */}
@@ -91,10 +122,34 @@ function HomeScreen() {
 					Exercises
 				</TextHeader>
 				<ScrollView>
-					<ClickableContainer title="Calisthenics" img={imagepath1} />
+					<ClickableContainer
+						title="Calisthenics"
+						img={imagepath1}
+						onPress={() =>
+							navigation.navigate("ExerciseTypeScreen", {
+								screenName: "Calisthenics",
+							})
+						}
+					/>
 					{/*onPress <ExerciseScreen screenName="Calisthenics" /> */}
-					<ClickableContainer title="Streching" img={imagepath2} />
-					<ClickableContainer title="Calisthenics" img={imagepath3} />
+					<ClickableContainer
+						title="Streching"
+						img={imagepath2}
+						onPress={() =>
+							navigation.navigate("ExerciseTypeScreen", {
+								screenName: "Streching",
+							})
+						}
+					/>
+					<ClickableContainer
+						title="Dieting"
+						img={imagepath3}
+						onPress={() =>
+							navigation.navigate("ExerciseTypeScreen", {
+								screenName: "Dieting",
+							})
+						}
+					/>
 					{/* <Image source={require("../assets/icon.png")} /> */}
 				</ScrollView>
 			</View>
@@ -121,12 +176,12 @@ const styles = StyleSheet.create({
 		backgroundColor: colors.main,
 	},
 	header: {
-		backgroundColor: colors.black,
+		backgroundColor: colors.asliBlack,
 		flex: 0.1,
 		flexDirection: "row",
 		justifyContent: "space-between",
 		alignItems: "center",
-		paddingHorizontal: 10,
+		paddingHorizontal: 15,
 	},
 	levelContainer: {
 		width: 75,
@@ -136,6 +191,11 @@ const styles = StyleSheet.create({
 		flexDirection: "row",
 		alignItems: "center",
 		justifyContent: "center",
+		backgroundColor: colors.secondary,
+	},
+	screen: {
+		backgroundColor: colors.asliBlack,
+		paddingTop: Constants.statusBarHeight - 15,
 	},
 });
 export default HomeScreen;

@@ -18,7 +18,7 @@ import values from "../config/values";
 import LottieView from "lottie-react-native";
 import BackBtn from "../Components/BackBtn";
 
-function ExerciseScreen({ ExerciseName }) {
+function ExerciseScreen({ ExerciseName, route, navigation }) {
 	// Sends an objectID
 	// of the Exercise and
 	// extract name, gif path
@@ -33,8 +33,12 @@ function ExerciseScreen({ ExerciseName }) {
 	const [gifPath, setgifPath] = useState("");
 	//const lottieRef = (useRef < AnimatedLottieView) | (null > null);
 
+	const initialSeconds = 10; // Set your desired initial seconds
+	const [seconds, setSeconds] = useState(initialSeconds);
+	const [isRunning, setIsRunning] = useState(true);
+
 	useEffect(() => {
-		setgifPath(require("../assets/Gifs/Push-ups.json"));
+		setgifPath(route.params.gifPath);
 		// if (animationRef.current) {
 		console.log("play");
 		Animated.timing(animationProgress.current, {
@@ -48,21 +52,36 @@ function ExerciseScreen({ ExerciseName }) {
 		// 	console.log("denied");
 		// }
 	}, []);
-	// useEffect(() => {
-	// 	if (lottieRef.current) {
-	// 		setTimeout(() => {
-	// 			lottieRef.current?.reset();
-	// 			lottieRef.current?.play();
-	// 		}, 100);
-	// 	}
-	// }, [lottieRef.current]);
+	useEffect(() => {
+		let interval;
+
+		if (isRunning && seconds > 0) {
+			interval = setInterval(() => {
+				setSeconds((prevSeconds) => prevSeconds - 1);
+			}, 1000);
+		} else {
+			clearInterval(interval);
+			setIsRunning(false);
+		}
+
+		return () => clearInterval(interval);
+	}, [isRunning, seconds, navigation]);
+
+	const handleBackPress = () => {
+		// Add any additional logic needed for the back button press
+		navigation.goBack();
+	};
 
 	return (
 		<Screen style={{ backgroundColor: colors.main }}>
 			{/* Header */}
 			<View style={styles.header}>
-				<BackBtn size={values.smallbtn} />
-				<MyText style={styles.headertxt}>{ExerciseName}</MyText>
+				<BackBtn
+					size={values.smallbtn}
+					onPress={seconds > 0 ? handleBackPress : null}
+					disabled={seconds > 0 ? false : true}
+				/>
+				<MyText style={styles.headertxt}>{route.params.exerciseName}</MyText>
 			</View>
 
 			{/* Exercise*/}
@@ -89,6 +108,21 @@ function ExerciseScreen({ ExerciseName }) {
 						progress={animationProgress.current}
 					/>
 				)}
+				<View
+					style={{
+						//backgroundColor: colors.asliBlack,
+						width: 100,
+						height: 100,
+						alignItems: "center",
+						justifyContent: "center",
+						borderRadius: 100,
+						borderColor: colors.asliBlack,
+						borderWidth: 5,
+						right: 20,
+					}}
+				>
+					<MyText style={styles.timertxt}>{seconds}</MyText>
+				</View>
 			</View>
 			{/* Description on how to do the specfic exercise */}
 			<View
@@ -96,7 +130,7 @@ function ExerciseScreen({ ExerciseName }) {
 					alignItems: "center",
 					justifyContent: "space-between",
 					//	backgroundColor: "red",
-					flex: 0.7,
+					flex: 0.5,
 				}}
 			>
 				<MyText>Lorem Ipsum dolor</MyText>
@@ -112,7 +146,6 @@ function ExerciseScreen({ ExerciseName }) {
 					tempor incididunt.
 				</MiniText>
 			</View>
-			{/* <Button title="Play" onPress={() => animationRef.current.play()} /> */}
 		</Screen>
 	);
 }
@@ -130,27 +163,34 @@ const styles = StyleSheet.create({
 		flex: 0.4,
 		paddingHorizontal: 10,
 		backgroundColor: colors.main,
-		//backgroundColor: "lightgreen",
+	//	backgroundColor: "lightgreen",
+		flexDirection: "row",
+		alignItems: "center",
+		justifyContent: "center",
 	},
 	exerciseGIF: {
-		//flex: 0.6,
-		width: "100%",
-		height: "100%",
-		//backgroundColor: "lightblue",
-		alignSelf: "center",
+		//flex: 0.5,
+		width: "85%",
+		height: "80%",
+	//	backgroundColor: "lightblue",
+		//alignSelf: "center",
+		//alignItems: "center",
+		justifyContent: "center",
+		overflow: "hidden",
+		left: 15,
 	},
 	header: {
-		// /	backgroundColor: colors.black,
+	//	backgroundColor: colors.black,
 		flex: 0.1,
 		flexDirection: "row",
 		alignItems: "center",
 		paddingHorizontal: 10,
+		justifyContent: "center",
 	},
 	headertxt: {
 		alignSelf: "center",
 		textAlign: "center",
-		//backgroundColor: "red",
-		position: "absolute",
+		//position: "absolute",
 		width: "100%",
 	},
 	motivationtxt: {
@@ -160,6 +200,12 @@ const styles = StyleSheet.create({
 		//backgroundColor: "lightyellow",
 		fontFamily: "Integralcf_bold",
 		fontSize: 14,
+	},
+	timertxt: {
+		fontSize: 56,
+		height: 86,
+		color: colors.asliBlack,
+		//	backgroundColor: "red",
 	},
 });
 export default ExerciseScreen;
