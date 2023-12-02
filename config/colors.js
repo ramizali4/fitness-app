@@ -10,5 +10,6 @@ export default {
 	yellow: "#e26a00",
 	main: "#F5F5F5",
 	secondary: "#3498db",
+	secondary: "#fb8c00",
 	secondaryB: "#7DF9FF",
 };

@@ -7,7 +7,7 @@ import {
 	TouchableOpacity,
 } from "react-native";
 import React, { Component } from "react";
-import img from "../assets/icon.png";
+import img from "../assets/rect1.png";
 import Screen from "../Components/Screen";
 import MyButton from "../Components/MyButton";
 import colors from "../config/colors";
@@ -18,71 +18,81 @@ import values from "../config/values";
 import MyTextInput from "../Components/MyTextInput";
 import { AntDesign } from "@expo/vector-icons";
 
-export class LoginScreen extends Component {
-	render() {
-		return (
-			<Screen style={styles.screen}>
-				<View style={{ flex: 0.45, backgroundColor: "yellow" }}>
-					<Image source={img} style={styles.img} />
-					<View style={styles.headertxt}>
-						<TextHeader>WELCOME BACK</TextHeader>
-					</View>
-					<View style={styles.topbtn}>
-						<MyButton
-							title="Sign Up"
-							color={colors.grey}
-							style={styles.headerbtn}
-							textColor={colors.moderateBlack}
-						/>
-						<MyButton
-							title="Login"
-							style={styles.headerbtn}
-							color={colors.pureWhite}
-						/>
-					</View>
+const LoginScreen = ({ navigation }) => {
+	const handleSignIn = () => {
+		navigation.navigate("Tab");
+	};
+	return (
+		<Screen style={styles.screen}>
+			<View style={{ flex: 0.6, elevation: 15 }}>
+				<Image source={img} style={styles.img} />
+				<View style={styles.headertxt}>
+					<TextHeader style={{ color: colors.pureWhite }}>
+						WELCOME BACK
+					</TextHeader>
 				</View>
-				<View style={styles.bottomContainer}>
-					<View style={{ marginVertical: 80 }}>
-						<MyTextInput placeholder="Username" />
-						<MyTextInput placeholder="Password" />
-					</View>
-					<View
-						style={{
-							alignItems: "center",
-							// position: "absolute",
-							//marginBottom: values.bottomMargin,
-							//backgroundColor: "pink",
-							flexDirection: "row",
-							width: "100%",
-							justifyContent: "space-evenly",
+				<View style={styles.topbtn}>
+					<MyButton
+						title="Sign Up"
+						color={colors.asliBlack}
+						style={styles.headerbtn}
+						textColor={colors.darkBlack}
+						onPress={() => {
+							navigation.navigate("SignUpScreen");
 						}}
-					>
-						<TouchableOpacity style={styles.logobtn}>
-							<AntDesign size={30} name="apple1" color={colors.pureWhite} />
-						</TouchableOpacity>
-						<TouchableOpacity style={styles.logobtn}>
-							<AntDesign size={30} name="google" color={colors.pureWhite} />
-						</TouchableOpacity>
-						<MyButton
-							color={colors.asliBlack}
-							bordercolor="red"
-							title="Login"
-							textColor={colors.pureWhite}
-						/>
-						{/* <TouchableOpacity>
+					/>
+					<MyButton
+						title="Login"
+						style={styles.headerbtn}
+						color={colors.asliBlack}
+						textColor={colors.secondary}
+					/>
+				</View>
+			</View>
+			<View style={styles.bottomContainer}>
+				<View style={{ marginVertical: 80 }}>
+					<MyTextInput placeholder="Username" />
+					<MyTextInput placeholder="Password" />
+					<Text style={{ alignSelf: "flex-end", color: colors.moderateBlack }}>
+						Forgot Password
+					</Text>
+				</View>
+			</View>
+			<View
+				style={{
+					alignItems: "center",
+					flex: 0.2,
+					//backgroundColor: "pink",
+					flexDirection: "row",
+					width: "100%",
+					justifyContent: "space-evenly",
+				}}
+			>
+				<TouchableOpacity style={styles.logobtn}>
+					<AntDesign size={28} name="apple1" color={colors.pureWhite} />
+				</TouchableOpacity>
+				<TouchableOpacity style={styles.logobtn}>
+					<AntDesign size={28} name="google" color={colors.pureWhite} />
+				</TouchableOpacity>
+				<MyButton
+					color={colors.asliBlack}
+					bordercolor="red"
+					title="Login"
+					textColor={colors.secondary}
+					onPress={handleSignIn}
+				/>
+				{/* <TouchableOpacity>
 							<MiniText>Already have a account?</MiniText>
 						</TouchableOpacity> */}
-					</View>
-				</View>
-			</Screen>
-		);
-	}
-}
+			</View>
+		</Screen>
+	);
+};
 
 const styles = StyleSheet.create({
 	bottomContainer: {
 		//width: "100%",
-		flex: 0.6,
+		flex: 0.35,
 		//backgroundColor: "lightblue",
 		marginVertical: values.bottomMargin,
 		alignItems: "center",
@@ -94,20 +104,21 @@ const styles = StyleSheet.create({
 	},
 	headertxt: {
 		position: "absolute",
-		backgroundColor: colors.pureWhite,
+		backgroundColor: colors.asliBlack,
 		left: 100,
-		top: "75%",
+		top: "85%",
 		padding: 10,
 	},
 	img: {
 		width: 550,
-		height: "100%",
+		height: "110%",
+		//elevation: 5,
 		//borderWidth: 5,
 		//borderColor: colors.black,
 	},
 	logobtn: {
-		width: 70,
-		height: 70,
+		width: 60,
+		height: 60,
 		backgroundColor: colors.asliBlack,
 		borderRadius: 100,
 		alignItems: "center",

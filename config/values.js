@@ -4,4 +4,5 @@ export default {
 	smallbtn: 40,
 	bigbtn: 45,
 	btnMargin: 10,
+	TabHeight: 60,
 };

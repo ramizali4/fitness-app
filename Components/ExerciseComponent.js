@@ -1,4 +1,4 @@
-import { View, Text, StyleSheet, TouchableOpacity } from "react-native";
+import { View, Text, StyleSheet, TouchableOpacity, Image } from "react-native";
 import React from "react";
 import Screen from "../Components/Screen";
 import BackBtn from "../Components/BackBtn";
@@ -16,6 +16,7 @@ const ExerciseComponent = ({ name, source, onPress }) => {
 				autoPlay
 				source={source}
 			/>
+
 			<MiniText style={{ height: 20, color: colors.pureWhite }}>
 				{name}
 			</MiniText>
@@ -40,6 +41,14 @@ const styles = StyleSheet.create({
 	gifContainer: {
 		width: 150,
 		height: 150,
+		borderRadius: values.borderRadius,
+		borderColor: colors.asliBlack,
+		backgroundColor: colors.asliBlack,
+		overflow: "hidden",
+	},
+	imgContainer: {
+		width: 100,
+		height: 100,
 		borderRadius: values.borderRadius,
 		borderColor: colors.asliBlack,
 		backgroundColor: colors.asliBlack,

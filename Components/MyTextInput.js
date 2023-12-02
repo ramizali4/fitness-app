@@ -15,7 +15,7 @@ function MyTextInput({
 	placeholder,
 	iconName,
 	iconColor,
-	width = "90%",
+	width = "80%",
 	...otherProps
 }) {
 	return (

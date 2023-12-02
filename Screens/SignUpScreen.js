@@ -7,7 +7,7 @@ import {
 	TouchableOpacity,
 } from "react-native";
 import React, { Component } from "react";
-import img from "../assets/fortune-vieyra-jD4MtXnsJ6w-unsplash.jpg";
+import img from "../assets/danielle-cerullo-CQfNt66ttZM-unsplash.jpg";
 import Screen from "../Components/Screen";
 import MyButton from "../Components/MyButton";
 import colors from "../config/colors";
@@ -17,68 +17,75 @@ import MiniText from "../Components/MiniText";
 import values from "../config/values";
 import MyTextInput from "../Components/MyTextInput";
 import { AntDesign } from "@expo/vector-icons";
+import {} from "firebase";
 
-export class SignUpScreen extends Component {
-	render() {
-		return (
-			<Screen style={styles.screen}>
-				<View style={{ flex: 0.45, backgroundColor: "yellow", elevation: 10 }}>
-					<Image source={img} style={styles.img} />
-					<View style={styles.headertxt}>
-						<TextHeader>APP NAME</TextHeader>
-					</View>
-					<View style={styles.topbtn}>
-						<MyButton
-							title="Sign Up"
-							color={colors.pureWhite}
-							style={styles.headerbtn}
-						/>
-						<MyButton
-							title="Login"
-							style={styles.headerbtn}
-							color={colors.grey}
-							textColor={colors.moderateBlack}
-						/>
-					</View>
+const SignUpScreen = ({ navigation }) => {
+	const handleSignUp = () => {
+		navigation.navigate("LoginScreen");
+	};
+
+	return (
+		<Screen style={styles.screen}>
+			<View style={{ flex: 0.5, elevation: 10 }}>
+				<Image source={img} style={styles.img} />
+				<View style={styles.headertxt}>
+					<TextHeader style={{ height: "auto" }}>
+						Lets Get you started.
+					</TextHeader>
 				</View>
-				<View style={styles.bottomContainer}>
-					<View style={{ marginVertical: 40 }}>
-						<MyTextInput placeholder="Username" />
-						<MyTextInput placeholder="Password" />
-						<MyTextInput placeholder="Renter Password" />
-					</View>
-					<View
-						style={{
-							alignItems: "center",
-							// position: "absolute",
-							//marginBottom: values.bottomMargin,
-							//backgroundColor: "pink",
-							flexDirection: "row",
-							width: "100%",
-							justifyContent: "space-evenly",
+				<View style={styles.topbtn}>
+					<MyButton
+						title="Sign Up"
+						color={colors.asliBlack}
+						style={styles.headerbtn}
+						textColor={colors.secondary}
+					/>
+					<MyButton
+						title="Login"
+						style={styles.headerbtn}
+						color={colors.asliBlack}
+						textColor={colors.moderateBlack}
+						onPress={() => {
+							navigation.navigate("LoginScreen");
 						}}
-					>
-						<TouchableOpacity style={styles.logobtn}>
-							<AntDesign size={30} name="apple1" color={colors.pureWhite} />
-						</TouchableOpacity>
-						<TouchableOpacity style={styles.logobtn}>
-							<AntDesign size={30} name="google" color={colors.pureWhite} />
-						</TouchableOpacity>
-						<MyButton
-							color={colors.asliBlack}
-							bordercolor="red"
-							title="Sign UP"
-							textColor={colors.pureWhite}
-						/>
-						{/* <TouchableOpacity>
-							<MiniText>Already have a account?</MiniText>
-						</TouchableOpacity> */}
-					</View>
+					/>
 				</View>
-			</Screen>
-		);
-	}
-}
+			</View>
+			<View style={styles.bottomContainer}>
+				<View style={{ marginVertical: 40 }}>
+					<MyTextInput placeholder="Username" />
+					<MyTextInput placeholder="Password" />
+					<MyTextInput placeholder="Renter Password" />
+				</View>
+				<View
+					style={{
+						alignItems: "center",
+						// position: "absolute",
+						//marginBottom: values.bottomMargin,
+						//backgroundColor: "pink",
+						flexDirection: "row",
+						width: "100%",
+						justifyContent: "space-evenly",
+					}}
+				>
+					<TouchableOpacity style={styles.logobtn}>
+						<AntDesign size={28} name="apple1" color={colors.pureWhite} />
+					</TouchableOpacity>
+					<TouchableOpacity style={styles.logobtn}>
+						<AntDesign size={28} name="google" color={colors.pureWhite} />
+					</TouchableOpacity>
+					<MyButton
+						color={colors.asliBlack}
+						bordercolor="red"
+						title="Sign UP"
+						textColor={colors.secondary}
+						onPress={handleSignUp}
+					/>
+				</View>
+			</View>
+		</Screen>
+	);
+};
 
 const styles = StyleSheet.create({
 	bottomContainer: {
@@ -88,7 +95,6 @@ const styles = StyleSheet.create({
 		marginVertical: values.bottomMargin,
 		alignItems: "center",
 		justifyContent: "space-between",
-		backgroundColor: colors.main,
 	},
 	headerbtn: {
 		width: 90,
@@ -98,7 +104,7 @@ const styles = StyleSheet.create({
 		position: "absolute",
 		backgroundColor: colors.pureWhite,
 		left: 100,
-		top: "75%",
+		top: "60%",
 		padding: 10,
 	},
 	img: {
@@ -108,8 +114,8 @@ const styles = StyleSheet.create({
 		//borderColor: colors.black,
 	},
 	logobtn: {
-		width: 70,
-		height: 70,
+		width: 60,
+		height: 60,
 		backgroundColor: colors.asliBlack,
 		borderRadius: 100,
 		alignItems: "center",
@@ -119,7 +125,7 @@ const styles = StyleSheet.create({
 		alignItems: "center",
 		paddingTop: 0,
 		// justifyContent: "center"
-		backgroundColor: colors.main,
+		//backgroundColor: colors.main,
 	},
 	topbtn: {
 		backgroundColor: colors.grey,

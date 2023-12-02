@@ -24,7 +24,7 @@ import { LineChart } from "react-native-chart-kit";
 import BackBtn from "../Components/BackBtn";
 
 function ExerciseTypeScreen({ screenName, navigation, route }) {
-	const imagepath1 = require("../assets/hopefilmphoto-QiYZCKJQMck-unsplash.jpg");
+	const imagepath1 = require("../assets/sven-mieke-EuwD039Svug-unsplash.jpg");
 	const imagepath2 = require("../assets/victor-freitas-WvDYdXDzkhs-unsplash.jpg");
 	const imagepath3 = require("../assets/rect1.png");
 	/* 2. Get the param */

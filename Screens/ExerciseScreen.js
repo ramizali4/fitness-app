@@ -5,6 +5,7 @@ import {
 	Button,
 	Animated,
 	Easing,
+	Text,
 } from "react-native";
 import React, { Component, useEffect, useRef, useState } from "react";
 import img from "../assets/icon.png";
@@ -131,19 +132,30 @@ function ExerciseScreen({ ExerciseName, route, navigation }) {
 					justifyContent: "space-between",
 					//	backgroundColor: "red",
 					flex: 0.5,
+					paddingVertical: 20,
 				}}
 			>
-				<MyText>Lorem Ipsum dolor</MyText>
-				<MiniText style={styles.Descriptiontxt}>
-					Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-					eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
-					minim veniam, quis nostrud exercitation
-				</MiniText>
+				<View
+					style={{
+						//	backgroundColor: "green",
+						alignItems: "center",
+						width: "85%",
+						padding: 10,
+					}}
+				>
+					<MyText>Lorem Ipsum dolor</MyText>
+					<MiniText style={styles.Descriptiontxt}>
+						Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+						eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim
+						ad minim veniam, quis nostrud exercitation
+					</MiniText>
+				</View>
 				{/* A random motivation text */}
-
 				<MiniText style={styles.motivationtxt}>
-					Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed eiusmod
+					<Text style={{ fontFamily: "", fontWeight: "800" }}>"</Text>
+					Lorem ipsum dolor sit amet, consectetur adequiste elit, sed eiusmod
 					tempor incididunt.
+					<Text style={{ fontFamily: "", fontWeight: "800" }}>"</Text>
 				</MiniText>
 			</View>
 		</Screen>
@@ -152,27 +164,28 @@ function ExerciseScreen({ ExerciseName, route, navigation }) {
 
 const styles = StyleSheet.create({
 	Descriptiontxt: {
-		width: "80%",
+		//	width: "80%",
 		//	alignSelf: "center",
 		textAlign: "center",
 		//backgroundColor: "lightyellow",
 		fontSize: 12,
 		fontFamily: "Integralcf_regular",
+		marginVertical: 8,
 	},
 	exerciseContainer: {
 		flex: 0.4,
 		paddingHorizontal: 10,
 		backgroundColor: colors.main,
-	//	backgroundColor: "lightgreen",
+		//	backgroundColor: "lightgreen",
 		flexDirection: "row",
 		alignItems: "center",
 		justifyContent: "center",
 	},
 	exerciseGIF: {
 		//flex: 0.5,
-		width: "85%",
+		width: "80%",
 		height: "80%",
-	//	backgroundColor: "lightblue",
+		//	backgroundColor: "lightblue",
 		//alignSelf: "center",
 		//alignItems: "center",
 		justifyContent: "center",
@@ -180,7 +193,7 @@ const styles = StyleSheet.create({
 		left: 15,
 	},
 	header: {
-	//	backgroundColor: colors.black,
+		//	backgroundColor: colors.black,
 		flex: 0.1,
 		flexDirection: "row",
 		alignItems: "center",
@@ -197,9 +210,13 @@ const styles = StyleSheet.create({
 		width: "80%",
 		//	alignSelf: "center",
 		textAlign: "center",
-		//backgroundColor: "lightyellow",
+		//	backgroundColor: colors.secondary,
 		fontFamily: "Integralcf_bold",
 		fontSize: 14,
+		padding: 10,
+		borderColor: colors.secondary,
+		borderRadius: values.borderRadius,
+		borderWidth: 2,
 	},
 	timertxt: {
 		fontSize: 56,

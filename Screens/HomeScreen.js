@@ -17,12 +17,15 @@ import colors from "../config/colors";
 import Screen from "../Components/Screen";
 import TextHeader from "../Components/TextHeader";
 import ClickableContainer from "../Components/ClickableContainer";
+import SafeView from "../Components/SafeView";
 
 function HomeScreen({ navigation }) {
 	const imagepath1 = require("../assets/street-workout-2629182_1920.jpg");
 	const imagepath2 = require("../assets/carl-barcelo-nqUHQkuVj3c-unsplash.jpg");
-	const imagepath3 = require("../assets/icon.png");
+	const imagepath3 = require("../assets/louis-hansel-9fy37IYSB3g-unsplash.jpg");
 
+	const dColor = "#fff";
+	const lColor = "#00";
 	return (
 		<Screen style={styles.screen}>
 			{/* Header */}
@@ -35,9 +38,11 @@ function HomeScreen({ navigation }) {
 					<Text style={{ color: colors.pureWhite }}>2</Text>
 				</View>
 			</View>
-			{/* Graph */}
-			<View style={styles.graphContainer}>
-				{/* <LineChart
+
+			<ScrollView style={{ flex: 0.9 }}>
+				{/* Graph */}
+				<View style={styles.graphContainer}>
+					{/* <LineChart
 					data={{
 						labels: ["Mon", "Tues", "Wed", "Thurs", "Fri", "Sat", "Sun"],
 						datasets: [
@@ -80,48 +85,47 @@ function HomeScreen({ navigation }) {
 						borderRadius: 16,
 					}}
 				/> */}
-				<LineChart
-					data={{
-						labels: ["Mon", "Tues", "Wed", "Thurs", "Fri", "Sat", "Sun"],
-						datasets: [
-							{
-								data: [0, 4, 8, 12, 16, 20],
+					<LineChart
+						data={{
+							labels: ["Mon", "Tues", "Wed", "Thurs", "Fri", "Sat", "Sun"],
+							datasets: [
+								{
+									data: [0, 4, 8, 12, 16, 20],
+								},
+							],
+						}}
+						width={Dimensions.get("window").width - 20} // from react-native
+						height={215}
+						//	yAxisLabel="No."
+						//	yAxisInterval={1} // optional, defaults to 1
+						chartConfig={{
+							backgroundColor: colors.secondary,
+							backgroundGradientFrom: colors.secondary,
+							backgroundGradientTo: colors.secondary,
+							decimalPlaces: 0, // optional, defaults to 2dp
+							color: (opacity = 1) => `rgba(255, 255, 255, ${opacity})`,
+							labelColor: (opacity = 1) => `rgba(255, 255, 255, ${opacity})`,
+							style: {
+								borderRadius: 16,
 							},
-						],
-					}}
-					width={Dimensions.get("window").width - 20} // from react-native
-					height={215}
-					//	yAxisLabel="No."
-					//	yAxisInterval={1} // optional, defaults to 1
-					chartConfig={{
-						backgroundColor: colors.secondary,
-						backgroundGradientFrom: colors.secondary,
-						backgroundGradientTo: colors.secondary,
-						decimalPlaces: 0, // optional, defaults to 2dp
-						color: (opacity = 1) => `rgba(255, 255, 255, ${opacity})`,
-						labelColor: (opacity = 1) => `rgba(255, 255, 255, ${opacity})`,
-						style: {
-							borderRadius: 16,
-						},
-						propsForDots: {
-							r: "6",
-							strokeWidth: "2",
-							stroke: colors.asliBlack,
-						},
-					}}
-					bezier
-					style={{
-						marginVertical: 8,
-						borderRadius: values.borderRadius,
-					}}
-				/>
-			</View>
-			{/* Exercises */}
-			<View style={styles.exerciseContainer}>
-				<TextHeader style={{ fontSize: 28, marginVertical: 5 }}>
-					Exercises
-				</TextHeader>
-				<ScrollView>
+							propsForDots: {
+								r: "6",
+								strokeWidth: "2",
+								stroke: colors.asliBlack,
+							},
+						}}
+						bezier
+						style={{
+							marginVertical: 8,
+							borderRadius: values.borderRadius,
+						}}
+					/>
+				</View>
+				{/* Exercises */}
+				<View style={styles.exerciseContainer}>
+					<TextHeader style={{ fontSize: 28, marginVertical: 5 }}>
+						Exercises
+					</TextHeader>
 					<ClickableContainer
 						title="Calisthenics"
 						img={imagepath1}
@@ -151,8 +155,9 @@ function HomeScreen({ navigation }) {
 						}
 					/>
 					{/* <Image source={require("../assets/icon.png")} /> */}
-				</ScrollView>
-			</View>
+				</View>
+				<SafeView />
+			</ScrollView>
 		</Screen>
 	);
 }
@@ -182,6 +187,8 @@ const styles = StyleSheet.create({
 		justifyContent: "space-between",
 		alignItems: "center",
 		paddingHorizontal: 15,
+		elevation: 10,
+		//backgroundColor: "red",
 	},
 	levelContainer: {
 		width: 75,
@@ -195,7 +202,8 @@ const styles = StyleSheet.create({
 	},
 	screen: {
 		backgroundColor: colors.asliBlack,
-		paddingTop: Constants.statusBarHeight - 15,
+		//		paddingTop: Constants.statusBarHeight - 15,
+		paddingTop: Constants.statusBarHeight - 30,
 	},
 });
 export default HomeScreen;

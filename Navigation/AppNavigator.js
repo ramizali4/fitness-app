@@ -13,6 +13,9 @@ import StartupScreen from "../Screens/StartupScreen";
 import LoginScreen from "../Screens/LoginScreen";
 import SignUpScreen from "../Screens/SignUpScreen";
 import ExercisesListScreen from "../Screens/ExercisesListScreen";
+import UserProfileScreen from "../Screens/UserProfileScreen";
+import DailyChallengesScreen from "../Screens/DailyChallengesScreen";
+import WorkoutScreen from "../Screens/WorkoutScreen";
 
 const Tab = createBottomTabNavigator();
 const Stack = createNativeStackNavigator();
@@ -25,7 +28,7 @@ const TabNavigator = () => (
 				borderRadius: values.borderRadius,
 				margin: 5,
 				marginHorizontal: 15,
-				height: 60,
+				height: values.TabHeight,
 				backgroundColor: colors.asliBlack,
 			},
 			tabBarActiveTintColor: colors.secondary,
@@ -42,8 +45,8 @@ const TabNavigator = () => (
 			}}
 		/>
 		<Tab.Screen
-			name="ExerciseScreen"
-			component={ExerciseScreen}
+			name="WorkoutScreen"
+			component={WorkoutScreen}
 			options={{
 				tabBarIcon: ({ color }) => (
 					<MaterialIcons name="fitness-center" size={30} color={color} />
@@ -51,8 +54,8 @@ const TabNavigator = () => (
 			}}
 		/>
 		<Tab.Screen
-			name="DailyChallenges"
-			component={ExerciseScreen}
+			name="DailyChallengesScreen"
+			component={DailyChallengesScreen}
 			options={{
 				tabBarIcon: ({ color }) => (
 					<Ionicons name="timer-sharp" size={30} color={color} />
@@ -61,7 +64,7 @@ const TabNavigator = () => (
 		/>
 		<Tab.Screen
 			name="Profile"
-			component={ExerciseScreen}
+			component={UserProfileScreen}
 			options={{
 				tabBarIcon: ({ color }) => (
 					<Entypo name="user" size={30} color={color} />
@@ -72,13 +75,13 @@ const TabNavigator = () => (
 );
 const AppNavigator = () => (
 	<Stack.Navigator screenOptions={{ headerShown: false }}>
+		<Stack.Screen name="StartupScreen" component={StartupScreen} />
+		<Stack.Screen name="SignUpScreen" component={SignUpScreen} />
+		<Stack.Screen name="LoginScreen" component={LoginScreen} />
 		<Stack.Screen name="Tab" component={TabNavigator} />
 		<Stack.Screen name="ExerciseScreen" component={ExerciseScreen} />
 		<Stack.Screen name="ExerciseTypeScreen" component={ExerciseTypeScreen} />
 		<Stack.Screen name="WelcomeScreen" component={WelcomeScreen} />
-		<Stack.Screen name="StartupScreen" component={StartupScreen} />
-		<Stack.Screen name="LoginScreen" component={LoginScreen} />
-		<Stack.Screen name="SignUpScreen" component={SignUpScreen} />
 		<Stack.Screen name="ExercisesListScreen" component={ExercisesListScreen} />
 	</Stack.Navigator>
 );

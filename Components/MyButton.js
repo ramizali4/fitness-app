@@ -41,6 +41,7 @@ const styles = StyleSheet.create({
 		//justifyContent: "center",
 		elevation: 2,
 		marginVertical: 15,
+		justifyContent: "center",
 	},
 	text: {
 		fontFamily: "Integralcf_medium",
@@ -48,6 +49,8 @@ const styles = StyleSheet.create({
 		//flex: 1,
 		//fontSize: 12,
 		textAlign: "center",
+		height: 18,
+		//backgroundColor: "red",
 	},
 });
 
