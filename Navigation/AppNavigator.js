@@ -75,8 +75,8 @@ const TabNavigator = () => (
 );
 const AppNavigator = () => (
 	<Stack.Navigator screenOptions={{ headerShown: false }}>
-		<Stack.Screen name="StartupScreen" component={StartupScreen} />
 		<Stack.Screen name="SignUpScreen" component={SignUpScreen} />
+		<Stack.Screen name="StartupScreen" component={StartupScreen} />
 		<Stack.Screen name="LoginScreen" component={LoginScreen} />
 		<Stack.Screen name="Tab" component={TabNavigator} />
 		<Stack.Screen name="ExerciseScreen" component={ExerciseScreen} />

@@ -6,7 +6,7 @@ import {
 	Button,
 	TouchableOpacity,
 } from "react-native";
-import React, { Component } from "react";
+import React, { Component, useState } from "react";
 import img from "../assets/danielle-cerullo-CQfNt66ttZM-unsplash.jpg";
 import Screen from "../Components/Screen";
 import MyButton from "../Components/MyButton";
@@ -17,11 +17,57 @@ import MiniText from "../Components/MiniText";
 import values from "../config/values";
 import MyTextInput from "../Components/MyTextInput";
 import { AntDesign } from "@expo/vector-icons";
-import {} from "firebase";
+import ErrorMessage from "../Components/ErrorMessage";
+import { SignUp } from "../firebase";
+// import { initializeApp } from "firebase/app";
+// import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
+// //import { auth, createUserWithEmailAndPassword } from "../firebase";
+
+// const firebaseConfig = {
+// 	apiKey: "AIzaSyACPQ_QZsABHT2EtjV72MiqqIIOmaXdRgA",
+// 	authDomain: "fitness-app-87517.firebaseapp.com",
+// 	projectId: "fitness-app-87517",
+// 	storageBucket: "fitness-app-87517.appspot.com",
+// 	messagingSenderId: "638981424547",
+// 	appId: "1:638981424547:web:722dae521a788dc02f8616",
+// 	measurementId: "G-8HZM94QM1C",
+// };
+
+// const app = initializeApp(firebaseConfig);
 
 const SignUpScreen = ({ navigation }) => {
-	const handleSignUp = () => {
-		navigation.navigate("LoginScreen");
+	const [email, setEmail] = useState("");
+	const [password, setPassword] = useState("");
+	const [errorMessage, SetErrorMessage] = useState("");
+
+	// const auth = getAuth(app);
+
+	// const handleSignUp = () => {
+	// 	createUserWithEmailAndPassword(auth, email, password)
+	// 		.then((userCredential) => {
+	// 			// Signed up
+	// 			const user = userCredential.user;
+	// 			console.log(user.email);
+	// 			navigation.navigate("Tab");
+	// 		})
+	// 		.catch((error) => {
+	// 			console.log("error", error);
+	// 			const errorCode = error.code;
+	// 			const errorMessage = error.message;
+	// 			// ..
+	// 		});
+	// 	//navigation.navigate("LoginScreen");
+	// };
+	const handleSignUp = async () => {
+		const loginResult = await SignUp(email, password);
+		console.log(loginResult);
+		if (loginResult.error) {
+			SetErrorMessage(loginResult.error.message);
+		} else {
+			// Handle successful login
+			console.log("User signed up successfully");
+			navigation.navigate("Tab"); // Replace with your navigation logic
+		}
 	};
 
 	return (
@@ -52,36 +98,46 @@ const SignUpScreen = ({ navigation }) => {
 				</View>
 			</View>
 			<View style={styles.bottomContainer}>
-				<View style={{ marginVertical: 40 }}>
-					<MyTextInput placeholder="Username" />
-					<MyTextInput placeholder="Password" />
-					<MyTextInput placeholder="Renter Password" />
+				<MyTextInput
+					placeholder="Email"
+					value={email}
+					onChangeText={(text) => setEmail(text)}
+				/>
+				<MyTextInput
+					placeholder="Password"
+					value={password}
+					onChangeText={(text) => setPassword(text)}
+					secureTextEntry
+				/>
+				<MyTextInput placeholder="Renter Password" />
+				<View style={{ marginHorizontal: 10 }}>
+					{errorMessage && <ErrorMessage message={errorMessage} />}
 				</View>
-				<View
-					style={{
-						alignItems: "center",
-						// position: "absolute",
-						//marginBottom: values.bottomMargin,
-						//backgroundColor: "pink",
-						flexDirection: "row",
-						width: "100%",
-						justifyContent: "space-evenly",
-					}}
-				>
-					<TouchableOpacity style={styles.logobtn}>
-						<AntDesign size={28} name="apple1" color={colors.pureWhite} />
-					</TouchableOpacity>
-					<TouchableOpacity style={styles.logobtn}>
-						<AntDesign size={28} name="google" color={colors.pureWhite} />
-					</TouchableOpacity>
-					<MyButton
-						color={colors.asliBlack}
-						bordercolor="red"
-						title="Sign UP"
-						textColor={colors.secondary}
-						onPress={handleSignUp}
-					/>
-				</View>
+			</View>
+			<View
+				style={{
+					alignItems: "center",
+					// position: "absolute",
+					//marginBottom: values.bottomMargin,
+					//backgroundColor: "pink",
+					flexDirection: "row",
+					width: "100%",
+					justifyContent: "space-evenly",
+				}}
+			>
+				<TouchableOpacity style={styles.logobtn}>
+					<AntDesign size={28} name="apple1" color={colors.pureWhite} />
+				</TouchableOpacity>
+				<TouchableOpacity style={styles.logobtn}>
+					<AntDesign size={28} name="google" color={colors.pureWhite} />
+				</TouchableOpacity>
+				<MyButton
+					color={colors.asliBlack}
+					bordercolor="red"
+					title="Sign UP"
+					textColor={colors.secondary}
+					onPress={handleSignUp}
+				/>
 			</View>
 		</Screen>
 	);
@@ -95,6 +151,7 @@ const styles = StyleSheet.create({
 		marginVertical: values.bottomMargin,
 		alignItems: "center",
 		justifyContent: "space-between",
+		// paddingTop: 20,
 	},
 	headerbtn: {
 		width: 90,
