@@ -17,7 +17,7 @@ import MyText from "../Components/MyText";
 import MiniText from "../Components/MiniText";
 import values from "../config/values";
 import LottieView from "lottie-react-native";
-import BackBtn from "../Components/BackBtn";
+import TopBackBtn from "../Components/TopBackBtn";
 
 function ExerciseScreen({ ExerciseName, route, navigation }) {
 	// Sends an objectID
@@ -77,7 +77,7 @@ function ExerciseScreen({ ExerciseName, route, navigation }) {
 		<Screen style={{ backgroundColor: colors.main }}>
 			{/* Header */}
 			<View style={styles.header}>
-				<BackBtn
+				<TopBackBtn
 					size={values.smallbtn}
 					onPress={seconds > 0 ? handleBackPress : null}
 					disabled={seconds > 0 ? false : true}
@@ -148,6 +148,7 @@ function ExerciseScreen({ ExerciseName, route, navigation }) {
 						Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
 						eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim
 						ad minim veniam, quis nostrud exercitation
+						
 					</MiniText>
 				</View>
 				{/* A random motivation text */}

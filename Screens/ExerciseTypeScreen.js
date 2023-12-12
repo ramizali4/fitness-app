@@ -21,7 +21,7 @@ import MyTextInput from "../Components/MyTextInput";
 import { AntDesign } from "@expo/vector-icons";
 import ClickableContainer from "../Components/ClickableContainer";
 import { LineChart } from "react-native-chart-kit";
-import BackBtn from "../Components/BackBtn";
+import TopBackBtn from "../Components/TopBackBtn";
 
 function ExerciseTypeScreen({ screenName, navigation, route }) {
 	const imagepath1 = require("../assets/sven-mieke-EuwD039Svug-unsplash.jpg");
@@ -33,7 +33,10 @@ function ExerciseTypeScreen({ screenName, navigation, route }) {
 		<Screen style={{ backgroundColor: colors.main }}>
 			{/* Header */}
 			<View style={styles.header}>
-				<BackBtn size={values.smallbtn} onPress={() => navigation.goBack()} />
+				<TopBackBtn
+					size={values.smallbtn}
+					onPress={() => navigation.goBack()}
+				/>
 				<MyText style={styles.headertxt}>{route.params.screenName}</MyText>
 			</View>
 			{/* Exercises */}

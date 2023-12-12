@@ -1,9 +1,10 @@
 import { View, Text, TouchableOpacity } from "react-native";
 import React from "react";
-import { Ionicons } from "@expo/vector-icons";
 import colors from "../config/colors";
+import { AntDesign, Ionicons } from "@expo/vector-icons";
+import values from "../config/values";
 
-const BackBtn = ({ size, onPress }) => {
+const TopBackBtn = ({ size, onPress }) => {
 	return (
 		<TouchableOpacity
 			style={{
@@ -13,6 +14,8 @@ const BackBtn = ({ size, onPress }) => {
 				backgroundColor: colors.asliBlack,
 				alignItems: "center",
 				justifyContent: "center",
+				position: "absolute",
+				left: values.btnMargin,
 			}}
 			onPress={onPress}
 		>
@@ -25,4 +28,4 @@ const BackBtn = ({ size, onPress }) => {
 	);
 };
 
-export default BackBtn;
+export default TopBackBtn;

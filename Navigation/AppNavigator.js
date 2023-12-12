@@ -16,6 +16,13 @@ import ExercisesListScreen from "../Screens/ExercisesListScreen";
 import UserProfileScreen from "../Screens/UserProfileScreen";
 import DailyChallengesScreen from "../Screens/DailyChallengesScreen";
 import WorkoutScreen from "../Screens/WorkoutScreen";
+import SelectGenderScreen from "../Screens/SelectGenderScreen";
+import SelectWeightScreen from "../Screens/SelectWeightScreen";
+import SelectAgeScreen from "../Screens/SelectAgeScreen";
+import SelectHeightScreen from "../Screens/SelectHeightScreen";
+import PrivacyPolicyScreen from "../Screens/PrivacyPolicyScreen";
+import GetStartedScreen from "../Screens/GetStartedScreen";
+import EditProfileScreen from "../Screens/EditProfileScreen";
 
 const Tab = createBottomTabNavigator();
 const Stack = createNativeStackNavigator();
@@ -75,11 +82,18 @@ const TabNavigator = () => (
 );
 const AppNavigator = () => (
 	<Stack.Navigator screenOptions={{ headerShown: false }}>
-		<Stack.Screen name="SignUpScreen" component={SignUpScreen} />
 		<Stack.Screen name="StartupScreen" component={StartupScreen} />
+		<Stack.Screen name="GetStartedScreen" component={GetStartedScreen} />
+		<Stack.Screen name="SignUpScreen" component={SignUpScreen} />
 		<Stack.Screen name="LoginScreen" component={LoginScreen} />
+		<Stack.Screen name="SelectGenderScreen" component={SelectGenderScreen} />
+		<Stack.Screen name="SelectWeightScreen" component={SelectWeightScreen} />
+		<Stack.Screen name="SelectAgeScreen" component={SelectAgeScreen} />
+		<Stack.Screen name="SelectHeightScreen" component={SelectHeightScreen} />
+		<Stack.Screen name="PrivacyPolicyScreen" component={PrivacyPolicyScreen} />
 		<Stack.Screen name="Tab" component={TabNavigator} />
 		<Stack.Screen name="ExerciseScreen" component={ExerciseScreen} />
+		<Stack.Screen name="EditProfileScreen" component={EditProfileScreen} />
 		<Stack.Screen name="ExerciseTypeScreen" component={ExerciseTypeScreen} />
 		<Stack.Screen name="WelcomeScreen" component={WelcomeScreen} />
 		<Stack.Screen name="ExercisesListScreen" component={ExercisesListScreen} />

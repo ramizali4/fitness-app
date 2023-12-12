@@ -1,7 +1,7 @@
 import { View, Text, StyleSheet, FlatList } from "react-native";
 import React from "react";
 import Screen from "../Components/Screen";
-import BackBtn from "../Components/BackBtn";
+import TopBackBtn from "../Components/TopBackBtn";
 import MyText from "../Components/MyText";
 import values from "../config/values";
 import MiniText from "../Components/MiniText";
@@ -64,7 +64,10 @@ const ExercisesListScreen = ({ listType, navigation, route }) => {
 	return (
 		<Screen>
 			<View style={styles.header}>
-				<BackBtn size={values.smallbtn} onPress={() => navigation.goBack()} />
+				<TopBackBtn
+					size={values.smallbtn}
+					onPress={() => navigation.goBack()}
+				/>
 				<MyText>{route.params.listType}</MyText>
 			</View>
 			{/* <View>

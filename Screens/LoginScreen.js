@@ -159,9 +159,9 @@ const LoginScreen = ({ navigation }) => {
 				<TouchableOpacity style={styles.logobtn}>
 					<AntDesign size={28} name="apple1" color={colors.pureWhite} />
 				</TouchableOpacity>
-				{/* <TouchableOpacity style={styles.logobtn} onPress={signInWithPopup}>
+				<TouchableOpacity style={styles.logobtn} onPress={signInWithPopup}>
 					<AntDesign size={28} name="google" color={colors.pureWhite} />
-				</TouchableOpacity> */}
+				</TouchableOpacity>
 				<MyButton
 					color={colors.asliBlack}
 					bordercolor="red"

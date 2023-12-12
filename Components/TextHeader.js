@@ -14,7 +14,7 @@ const styles = StyleSheet.create({
 	text: {
 		fontFamily: "Integralcf_medium",
 		fontSize: 32,
-		color: colors.black,
+		color: colors.asliBlack,
 		height: 40,
 	},
 });

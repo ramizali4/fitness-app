@@ -18,6 +18,7 @@ import Screen from "../Components/Screen";
 import TextHeader from "../Components/TextHeader";
 import ClickableContainer from "../Components/ClickableContainer";
 import SafeView from "../Components/SafeView";
+import { ref, set } from "firebase/database";
 
 function HomeScreen({ navigation }) {
 	const imagepath1 = require("../assets/street-workout-2629182_1920.jpg");

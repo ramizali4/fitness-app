@@ -19,7 +19,7 @@ import MyText from "../Components/MyText";
 import MiniText from "../Components/MiniText";
 import values from "../config/values";
 import LottieView from "lottie-react-native";
-import BackBtn from "../Components/BackBtn";
+import TopBackBtn from "../Components/TopBackBtn";
 import MyTextInput from "../Components/MyTextInput";
 
 const DailyChallengesScreen = ({ route, navigation }) => {

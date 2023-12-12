@@ -36,7 +36,7 @@ const styles = StyleSheet.create({
 		padding: 10,
 		//	paddingVertical: 10,
 		//alignItems: "center",
-		width: 180,
+		width: 150,
 		height: 50,
 		//justifyContent: "center",
 		elevation: 2,

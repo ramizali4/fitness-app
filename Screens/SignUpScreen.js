@@ -18,7 +18,7 @@ import values from "../config/values";
 import MyTextInput from "../Components/MyTextInput";
 import { AntDesign } from "@expo/vector-icons";
 import ErrorMessage from "../Components/ErrorMessage";
-import { SignUp } from "../firebase";
+import { SignInUsingGoogle, SignUp } from "../firebase";
 // import { initializeApp } from "firebase/app";
 // import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
 // //import { auth, createUserWithEmailAndPassword } from "../firebase";
@@ -66,13 +66,25 @@ const SignUpScreen = ({ navigation }) => {
 		} else {
 			// Handle successful login
 			console.log("User signed up successfully");
-			navigation.navigate("Tab"); // Replace with your navigation logic
+			navigation.navigate("SelectGenderScreen"); // Replace with your navigation logic
+		}
+	};
+
+	const handleSignUpGoogle = async () => {
+		const loginResult = await SignInUsingGoogle(email, password);
+		console.log(loginResult);
+		if (loginResult.error) {
+			SetErrorMessage(loginResult.error.message);
+		} else {
+			// Handle successful login
+			console.log("User signed up successfully");
+			//navigation.navigate("SelectGenderScreen"); // Replace with your navigation logic
 		}
 	};
 
 	return (
 		<Screen style={styles.screen}>
-			<View style={{ flex: 0.5, elevation: 10 }}>
+			<View style={{ flex: 0.45, elevation: 10 }}>
 				<Image source={img} style={styles.img} />
 				<View style={styles.headertxt}>
 					<TextHeader style={{ height: "auto" }}>
@@ -109,13 +121,14 @@ const SignUpScreen = ({ navigation }) => {
 					onChangeText={(text) => setPassword(text)}
 					secureTextEntry
 				/>
-				<MyTextInput placeholder="Renter Password" />
+				<MyTextInput secureTextEntry placeholder="Renter Password" />
 				<View style={{ marginHorizontal: 10 }}>
 					{errorMessage && <ErrorMessage message={errorMessage} />}
 				</View>
 			</View>
 			<View
 				style={{
+					flex: 0.15,
 					alignItems: "center",
 					// position: "absolute",
 					//marginBottom: values.bottomMargin,
@@ -128,7 +141,7 @@ const SignUpScreen = ({ navigation }) => {
 				<TouchableOpacity style={styles.logobtn}>
 					<AntDesign size={28} name="apple1" color={colors.pureWhite} />
 				</TouchableOpacity>
-				<TouchableOpacity style={styles.logobtn}>
+				<TouchableOpacity style={styles.logobtn} onPress={handleSignUpGoogle}>
 					<AntDesign size={28} name="google" color={colors.pureWhite} />
 				</TouchableOpacity>
 				<MyButton
@@ -146,11 +159,11 @@ const SignUpScreen = ({ navigation }) => {
 const styles = StyleSheet.create({
 	bottomContainer: {
 		//width: "100%",
-		flex: 0.6,
+		flex: 0.4,
 		//backgroundColor: "lightblue",
 		marginVertical: values.bottomMargin,
 		alignItems: "center",
-		justifyContent: "space-between",
+		justifyContent: "center",
 		// paddingTop: 20,
 	},
 	headerbtn: {

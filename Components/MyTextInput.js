@@ -10,16 +10,18 @@ import {
 
 import { AntDesign, MaterialCommunityIcons } from "@expo/vector-icons";
 import colors from "../config/colors";
+import { Text } from "react-native";
 
 function MyTextInput({
 	placeholder,
 	iconName,
 	iconColor,
 	width = "80%",
+	nameplate,
 	...otherProps
 }) {
 	return (
-		<TouchableWithoutFeedback style={{ flexDirection: "row" }}>
+		<TouchableWithoutFeedback style={{}}>
 			<View style={[styles.container, { width }]}>
 				{iconName && (
 					<AntDesign
@@ -29,6 +31,7 @@ function MyTextInput({
 						style={styles.icon}
 					/>
 				)}
+				{nameplate && <Text style={styles.nameplate}>{nameplate}</Text>}
 				<TextInput
 					placeholder={placeholder}
 					placeholderTextColor={colors.moderateBlack}
@@ -59,7 +62,7 @@ const styles = StyleSheet.create({
 		paddingHorizontal: 10,
 		flexDirection: "row",
 		justifyContent: "center",
-		marginVertical: 15,
+		marginVertical: 20,
 		alignItems: "center",
 		// backgroundColor: "tomato",
 		// height: 350
@@ -67,6 +70,14 @@ const styles = StyleSheet.create({
 	icon: {
 		marginRight: 10,
 		// backgroundColor: "red",
+	},
+	nameplate: {
+		fontSize: 10,
+		// backgroundColor: "cyan",
+		position: "absolute",
+		left: 8,
+		top: -5,
+		color: colors.moderateBlack,
 	},
 });
 export default MyTextInput;

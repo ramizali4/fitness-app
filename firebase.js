@@ -1,13 +1,18 @@
 // Import the functions you need from the SDKs you need
 import * as firebase from "firebase/app";
+import { getDatabase, ref, set } from "firebase/database";
 
 import { getAnalytics } from "firebase/analytics";
 // import { initializeApp } from "firebase/app";
 import {
+	GoogleAuthProvider,
 	createUserWithEmailAndPassword,
 	getAuth,
 	signInWithEmailAndPassword,
+	signInWithPopup,
+	signInWithRedirect,
 } from "firebase/auth";
+import { useState } from "react";
 //import { FirebaseError } from "firebase/";
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
@@ -22,34 +27,63 @@ const firebaseConfig = {
 	messagingSenderId: "638981424547",
 	appId: "1:638981424547:web:722dae521a788dc02f8616",
 	measurementId: "G-8HZM94QM1C",
+	databaseURL:
+		"https://fitness-app-87517-default-rtdb.asia-southeast1.firebasedatabase.app",
 };
-
-// Initialize Firebase
-// let app;
-// if (firebase.apps.length === 0) {
-// 	app = firebase.initializeApp(firebaseConfig);
-// } else {
-// 	app = firebase.app();
-// }
-
-// const app = firebase.initializeApp(firebaseConfig);
-// //const auth = firebase.au;
-// //const getauth = auth.getAuth(app);
-// //const analytics = getAnalytics(app);
-// export { auth };
 
 const app = firebase.initializeApp(firebaseConfig);
 const auth = getAuth(app);
-//firebase.FirebaseError
+const provider = new GoogleAuthProvider();
+const db = getDatabase(app);
 
-// export const signup = async (email, password) => {
-// 	try {
-// 		await auth.createUserWithEmailAndPassword(email, password);
-// 		console.log("User signed up successfully");
-// 	} catch (error) {
-// 		console.error("Sign up failed:", error);
-// 	}
-// };
+// States
+const userState = {
+	ID: "",
+	email: "",
+	password: "",
+	gender: true, // true | male, false | female
+	weight: 0,
+	height: 0,
+	age: 0,
+	level: 0,
+};
+export const setEmail = (newEmail) => {
+	userState.email = newEmail || "";
+
+	const atIndex = newEmail.indexOf("@");
+	userState.ID = atIndex !== -1 ? newEmail.substring(0, atIndex) : "";
+};
+
+export const setPassword = (newPassword) => {
+	userState.password = newPassword || "";
+};
+
+export const setGender = (newGender) => {
+	userState.gender = newGender !== undefined ? newGender : true;
+};
+
+export const setWeight = (newWeight) => {
+	userState.weight = newWeight || 0;
+};
+
+export const setHeight = (newHeight) => {
+	userState.height = newHeight || 0;
+};
+
+export const setAge = (newAge) => {
+	userState.age = newAge || 0;
+};
+
+export const setLevel = (newLevel) => {
+	userState.level = newLevel || 0;
+};
+// const [email, setEmail] = useState("");
+// const [password, setPassword] = useState("");
+// export const [gender, setGender] = useState(true); // true | male , false | female
+// export const [weight, setWeight] = useState(0);
+// export const [height, setHeight] = useState(0);
+// export const [age, setAge] = useState(0);
+// export const [level, setLevel] = useState(0);
 
 export const SignUp = async (email, password) => {
 	try {
@@ -60,6 +94,8 @@ export const SignUp = async (email, password) => {
 		);
 		const user = userCredential.user;
 		console.log(user.email);
+		setEmail(email);
+		setPassword(password);
 		return user;
 	} catch (error) {
 		let errorMessage = error.message;
@@ -102,7 +138,41 @@ export const SignUp = async (email, password) => {
 	}
 };
 // Function to sign in an existing user
+export const createProfile = async () => {
+	//db().ref('/users/${res')
+	console.log("userState", userState);
+	try {
+		await set(ref(db, "users/" + userState.ID), {
+			email: userState.email,
+			password: userState.password,
+			gender: userState.gender,
+			weight: userState.weight,
+			height: userState.height,
+			age: userState.age,
+			level: userState.level,
+		});
+		console.log("Profile created successfully!");
+	} catch (error) {
+		console.error("Error creating profile:", error);
+	}
+};
+export const SignInUsingGoogle = async (email, password) => {
+	try {
+		const result = await signInWithRedirect(auth, provider);
+		const credential = GoogleAuthProvider.credentialFromResult(result);
+		const token = credential.accessToken;
+		console.log("result", result);
+		// The signed-in user info.
+		const user = result.user;
+		console.log("user", user);
+		return user;
+	} catch (error) {
+		let errorMessage = error.message;
+		const errorCode = error.code;
 
+		return { error: { code: errorCode, message: errorMessage } };
+	}
+};
 export const login = async (email, password) => {
 	try {
 		const userCredential = await signInWithEmailAndPassword(
@@ -137,42 +207,3 @@ export const login = async (email, password) => {
 		return { error: { code: errorCode, message: errorMessage } };
 	}
 };
-
-// export const login = (email, password) => {
-// 	//console.log(email, password);
-// 	signInWithEmailAndPassword(auth, email, password)
-// 		.then((userCredential) => {
-// 			// Signed in
-// 			const user = userCredential.user;
-// 			console.log("User signed in:", user.email);
-// 			return user;
-// 			//navigation.navigate("Tab");
-// 		})
-// 		.catch((error) => {
-// 			const errorCode = error.code;
-// 			let errorMessage = error.message;
-// 			console.log("Login error:", errorCode, errorMessage);
-
-// 			switch (errorCode) {
-// 				case "auth/invalid-email":
-// 					errorMessage = "Invalid email format.";
-// 					break;
-// 				case "auth/user-not-found":
-// 					errorMessage = "User account with this email does not exist.";
-// 					break;
-// 				case "auth/wrong-password":
-// 					errorMessage = "Incorrect password.";
-// 					break;
-// 				case "auth/invalid-credential":
-// 					errorMessage = "Invalid Credentials.";
-// 					break;
-// 				case "auth/too-many-requests":
-// 					errorMessage = "Too many requests";
-// 					break;
-// 				default:
-// 					errorMessage = "An error occurred.";
-// 			}
-
-// 			return { error: { code: errorCode, message: errorMessage } };
-// 		});
-// };

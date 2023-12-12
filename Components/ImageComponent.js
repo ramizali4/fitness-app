@@ -1,7 +1,7 @@
 import { View, Text, StyleSheet, TouchableOpacity, Image } from "react-native";
 import React from "react";
 import Screen from "../Components/Screen";
-import BackBtn from "../Components/BackBtn";
+import TopBackBtn from "./TopBackBtn";
 import MyText from "../Components/MyText";
 import values from "../config/values";
 import MiniText from "../Components/MiniText";

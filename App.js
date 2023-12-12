@@ -13,6 +13,13 @@ import LottieView from "lottie-react-native";
 import ExercisesListScreen from "./Screens/ExercisesListScreen";
 import { NavigationContainer } from "@react-navigation/native";
 import AppNavigator from "./Navigation/AppNavigator";
+import WorkoutScreen from "./Screens/WorkoutScreen";
+import SelectGenderScreen from "./Screens/SelectGenderScreen";
+import SelectWeightScreen from "./Screens/SelectWeightScreen";
+import SelectAgeScreen from "./Screens/SelectAgeScreen";
+import SelectHeightScreen from "./Screens/SelectHeightScreen";
+import PrivacyPolicyScreen from "./Screens/PrivacyPolicyScreen";
+import EditProfileScreen from "./Screens/EditProfileScreen";
 
 export default function App() {
 	const [fontsLoaded] = useFonts({
@@ -36,6 +43,7 @@ export default function App() {
 	// }, []);
 
 	return (
+		// <SelectGenderScreen />
 		<NavigationContainer>
 			<AppNavigator />
 		</NavigationContainer>

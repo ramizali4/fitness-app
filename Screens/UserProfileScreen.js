@@ -18,7 +18,7 @@ import MyText from "../Components/MyText";
 import MiniText from "../Components/MiniText";
 import values from "../config/values";
 import LottieView from "lottie-react-native";
-import BackBtn from "../Components/BackBtn";
+import TopBackBtn from "../Components/TopBackBtn";
 import MyTextInput from "../Components/MyTextInput";
 
 const UserProfileScreen = ({ route, navigation }) => {
@@ -30,21 +30,37 @@ const UserProfileScreen = ({ route, navigation }) => {
 				<TextHeader style={styles.headertxt2}>Profile</TextHeader>
 			</View>
 			<View style={styles.container}>
-				<MiniText style={styles.text}>Your Name</MiniText>
+				{/* <MiniText style={styles.text}>Your Name</MiniText> */}
 				<MiniText style={styles.text}>
 					LoremUpsum <Text style={{ fontFamily: "" }}>@</Text>gmail.com
 				</MiniText>
 				<MiniText style={styles.text}>BMI:</MiniText>
-				<View
-					style={{
-						width: "85%",
-						height: 10,
-						backgroundColor: "black",
-						alignSelf: "center",
-						marginVertical: 10,
+				<View style={{ flexDirection: "row", justifyContent: "space-between" }}>
+					<View
+						style={{
+							width: "44%",
+							height: 10,
+							backgroundColor: "black",
+							alignSelf: "center",
+							marginVertical: 10,
+						}}
+					></View>
+					<MyText>25</MyText>
+					<View
+						style={{
+							width: "44%",
+							height: 10,
+							backgroundColor: "black",
+							alignSelf: "center",
+							marginVertical: 10,
+						}}
+					></View>
+				</View>
+				<TouchableOpacity
+					onPress={() => {
+						navigation.navigate("EditProfileScreen");
 					}}
-				></View>
-				<TouchableOpacity>
+				>
 					<MiniText style={styles.text}>Edit Profile</MiniText>
 				</TouchableOpacity>
 				<TouchableOpacity>
@@ -87,6 +103,7 @@ const styles = StyleSheet.create({
 		flexDirection: "row",
 		//	alignItems: "center",
 		paddingHorizontal: 10,
+		marginBottom: 20,
 		//	justifyContent: "center",
 	},
 	headertxt1: {
@@ -110,6 +127,6 @@ const styles = StyleSheet.create({
 		borderBottomWidth: 1,
 		padding: 5,
 	},
-	text: { marginVertical: 5, height: 20 },
+	text: { marginVertical: 8, height: 20 },
 });
 export default UserProfileScreen;
