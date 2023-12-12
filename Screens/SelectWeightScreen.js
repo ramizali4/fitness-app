@@ -1,17 +1,22 @@
-import { View, Text, TouchableOpacity, Image, StyleSheet } from "react-native";
+import { View, StyleSheet } from "react-native";
 import React, { useState } from "react";
-import Screen from "../Components/Screen";
-import TextHeader from "../Components/TextHeader";
-import MyText from "../Components/MyText";
-import colors from "../config/colors";
-import MyButton from "../Components/MyButton";
-import BackBtn from "../Components/BackBtn";
-import { Picker } from "@react-native-picker/picker";
 import ScrollPicker from "react-native-wheel-scrollview-picker";
 import {} from "react-native-wheel-scrollview-picker";
 import { setWeight } from "../firebase";
+import colors from "../config/colors";
+// - - - - - - - - -  Custom Components  - - - - - - - - - - //
+import TextHeader from "../Components/TextHeader";
+import MyButton from "../Components/MyButton";
+import BackBtn from "../Components/BackBtn";
+import Screen from "../Components/Screen";
+import MyText from "../Components/MyText";
 
-// const dataSource = ["1", "2", "3", "4", "5", "6"];
+// ==================================================================================
+// The SelectWeightScreen component is part of a React Native fitness application and
+// is responsible for collecting the user's weight information. Provides a unique scrollable
+// options for selecting number ranging from 0-250.
+// ==================================================================================
+
 const dataSource = Array.from({ length: 250 }, (value, index) => index + 1);
 const SelectWeightScreen = ({ navigation }) => {
 	const [index, setIndex] = React.useState(49);
@@ -37,6 +42,7 @@ const SelectWeightScreen = ({ navigation }) => {
 					You can always change this later
 				</MyText>
 			</View>
+			{/* Main Container containing the scrollable picker */}
 			<View
 				style={{
 					alignItems: "center",
@@ -85,6 +91,7 @@ const SelectWeightScreen = ({ navigation }) => {
 					highlightBorderWidth={2}
 				/>
 			</View>
+			{/* Footer Section having Next & Back Btn */}
 			<View
 				style={{
 					flex: 0.15,

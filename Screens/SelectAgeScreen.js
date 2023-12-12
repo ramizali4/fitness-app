@@ -1,17 +1,22 @@
 import { View, Text, TouchableOpacity, Image, StyleSheet } from "react-native";
 import React, { useState } from "react";
-import Screen from "../Components/Screen";
-import TextHeader from "../Components/TextHeader";
-import MyText from "../Components/MyText";
-import colors from "../config/colors";
-import MyButton from "../Components/MyButton";
-import BackBtn from "../Components/BackBtn";
-import { Picker } from "@react-native-picker/picker";
 import ScrollPicker from "react-native-wheel-scrollview-picker";
 import {} from "react-native-wheel-scrollview-picker";
+import colors from "../config/colors";
 import { setAge, userState } from "../firebase";
+// - - - - - - - - -  Custom Components  - - - - - - - - - - //
+import TextHeader from "../Components/TextHeader";
+import MyText from "../Components/MyText";
+import Screen from "../Components/Screen";
+import MyButton from "../Components/MyButton";
+import BackBtn from "../Components/BackBtn";
 
-// const dataSource = ["1", "2", "3", "4", "5", "6"];
+// ==================================================================================
+// The SelectAgeScreen component is part of a React Native fitness application and
+// is responsible for collecting the user's age information to provide the user with their
+// BMI. It provides a unique scrollable options for selecting number ranging from 0-250.
+// ==================================================================================
+
 const dataSource = Array.from({ length: 125 }, (value, index) => index + 1);
 const SelectAgeScreen = ({ navigation }) => {
 	const [index, setIndex] = React.useState(49);
@@ -37,6 +42,7 @@ const SelectAgeScreen = ({ navigation }) => {
 					This help us create your{"\n"} personlized plan.
 				</MyText>
 			</View>
+			{/* Main Container containing the scrollable picker */}
 			<View
 				style={{
 					alignItems: "center",
@@ -70,6 +76,7 @@ const SelectAgeScreen = ({ navigation }) => {
 					highlightBorderWidth={2}
 				/>
 			</View>
+			{/* Footer Section having Next & Back Btn */}
 			<View
 				style={{
 					flex: 0.15,

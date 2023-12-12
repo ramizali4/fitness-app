@@ -1,12 +1,19 @@
 import { View, Text, TouchableOpacity, Image, StyleSheet } from "react-native";
 import React, { useState } from "react";
-import Screen from "../Components/Screen";
-import TextHeader from "../Components/TextHeader";
-import MyText from "../Components/MyText";
-import colors from "../config/colors";
-import MyButton from "../Components/MyButton";
 import { setGender } from "../firebase";
+import colors from "../config/colors";
+// - - - - - - - - -  Custom Components  - - - - - - - - - - //
 import ErrorMessage from "../Components/ErrorMessage";
+import TextHeader from "../Components/TextHeader";
+import MyButton from "../Components/MyButton";
+import Screen from "../Components/Screen";
+import MyText from "../Components/MyText";
+
+// ==================================================================================
+// The SelectGenderScreen component is part of a React Native fitness application and
+// is responsible for collecting the user's gender information. Provides two clicable
+// options for selecting gender (male or female).
+// ==================================================================================
 
 const SelectGenderScreen = ({ navigation }) => {
 	const [selectedGender, setSelectedGender] = useState(null);
@@ -48,6 +55,7 @@ const SelectGenderScreen = ({ navigation }) => {
 					To give you a better experience we need to knwo about your gender
 				</MyText>
 			</View>
+			{/* Main Container containing the two clickable option & errorMessage*/}
 			<View
 				style={{
 					alignItems: "center",
@@ -84,6 +92,7 @@ const SelectGenderScreen = ({ navigation }) => {
 				</TouchableOpacity>
 				{errorMessage && <ErrorMessage message={errorMessage} />}
 			</View>
+			{/* Footer Section => Next Button */}
 			<View
 				style={{
 					flex: 0.15,
