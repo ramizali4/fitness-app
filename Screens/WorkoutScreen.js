@@ -22,6 +22,7 @@ import TextComponent from "../Components/TextComponent";
 // ==============================================================
 
 const WorkoutScreen = ({ route, navigation }) => {
+	// data for tracking % of body parts
 	const data = [
 		{
 			name: "Chest",
@@ -78,6 +79,7 @@ const WorkoutScreen = ({ route, navigation }) => {
 				<TextHeader style={styles.headertxt1}>Your Workout</TextHeader>
 			</View>
 			<ScrollView style={{ flex: 0.6 }}>
+				{/* Graph */}
 				<View style={styles.graphContainer}>
 					<LineChart
 						data={{
@@ -127,10 +129,10 @@ const WorkoutScreen = ({ route, navigation }) => {
 					<MyText style={{ marginHorizontal: 5, fontSize: 16 }}>
 						Workouts Per Week
 					</MyText>
+					{/* FlatList showcased in horizontal */}
 					<FlatList
 						horizontal
 						data={data}
-						//	style={{ backgroundColor: "red" }}
 						renderItem={({ item }) => (
 							<ImageComponent
 								name={item.name}
@@ -164,23 +166,14 @@ const styles = StyleSheet.create({
 	bottomcontainer: {
 		flex: 0.3,
 		paddingHorizontal: 10,
-		//backgroundColor: colors.main,
-		//	backgroundColor: "lightblue",
-		//	marginHorizontal: 15,
 		marginTop: 20,
 		alignItems: "center",
-		//justifyContent: "center",
 	},
 	container: {
 		flex: 0.25,
 		paddingHorizontal: 10,
-		//backgroundColor: colors.main,
-		//	backgroundColor: "lightgreen",
 		marginHorizontal: 5,
 		paddingVertical: 5,
-		//marginTop: 30,
-		//	alignItems: "center",
-		//justifyContent: "center",
 	},
 	graphContainer: {
 		flex: 0.3,
@@ -191,9 +184,7 @@ const styles = StyleSheet.create({
 		backgroundColor: colors.asliBlack,
 		flex: 0.1,
 		flexDirection: "row",
-		//	alignItems: "center",
 		paddingHorizontal: 5,
-		//	justifyContent: "center",
 		paddingTop: 25,
 		paddingBottom: 5,
 		width: "100%",
@@ -215,12 +206,6 @@ const styles = StyleSheet.create({
 		alignItems: "center",
 		color: colors.secondary,
 		// textAlign: "center",
-		// position: "absolute",
-		//	width: "100%",
-		//  fontWeight:'inte'
-		// textDecorationLine: "underline",
-		// textDecorationColor: colors.asliBlack,
-		// textDecorationStyle: "solid",
 	},
 	headertxt2: {
 		alignSelf: "center",

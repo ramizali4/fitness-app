@@ -54,7 +54,7 @@ const UserProfileScreen = ({ route, navigation }) => {
 					<MiniText style={styles.text}>Edit Profile</MiniText>
 				</TouchableOpacity>
 				<TouchableOpacity>
-					<MiniText style={styles.text}>Privacy Policy</MiniText>
+					<MiniText style={styles.text}>Privacy Policy.</MiniText>
 				</TouchableOpacity>
 			</View>
 			<View style={styles.bottomContainer}>
@@ -84,11 +84,8 @@ const styles = StyleSheet.create({
 		//backgroundColor: "lightgreen",
 		marginHorizontal: 15,
 		marginTop: 30,
-		//	alignItems: "center",
-		//justifyContent: "center",
 	},
 	header: {
-		//	backgroundColor: colors.black,
 		flex: 0.1,
 		flexDirection: "row",
 		//	alignItems: "center",
