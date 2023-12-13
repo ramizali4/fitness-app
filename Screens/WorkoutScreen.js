@@ -1,32 +1,25 @@
 import {
-	animationProgress,
 	View,
 	StyleSheet,
-	Button,
-	Animated,
-	Easing,
-	Text,
-	TouchableOpacity,
 	FlatList,
 	Dimensions,
 	ScrollView,
 } from "react-native";
-import React, { Component, useEffect, useRef, useState } from "react";
+import React from "react";
 import { LineChart } from "react-native-chart-kit";
-import Screen from "../Components/Screen";
-import MyButton from "../Components/MyButton";
 import colors from "../config/colors";
-import TextHeader from "../Components/TextHeader";
-import MyText from "../Components/MyText";
-import MiniText from "../Components/MiniText";
-import values from "../config/values";
-import LottieView from "lottie-react-native";
-import TopBackBtn from "../Components/TopBackBtn";
-import MyTextInput from "../Components/MyTextInput";
-import ExerciseComponent from "../Components/ExerciseComponent";
+// - - - - - - - - -  Custom Components  - - - - - - - - - - //
 import ImageComponent from "../Components/ImageComponent";
-import TextComponent from "../Components/TextComponent";
+import MyText from "../Components/MyText";
 import SafeView from "../Components/SafeView";
+import TextHeader from "../Components/TextHeader";
+import TextComponent from "../Components/TextComponent";
+
+// ==============================================================
+// WorkoutScreen:
+// - Presents a workout interface.
+// - Users can follow and track their workout routines.
+// ==============================================================
 
 const WorkoutScreen = ({ route, navigation }) => {
 	const data = [

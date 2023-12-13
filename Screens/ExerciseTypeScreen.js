@@ -1,27 +1,18 @@
-import {
-	Text,
-	View,
-	Image,
-	StyleSheet,
-	Button,
-	TouchableOpacity,
-	ScrollView,
-	Dimensions,
-} from "react-native";
-import React, { Component } from "react";
-import img from "../assets/icon.png";
-import Screen from "../Components/Screen";
-import MyButton from "../Components/MyButton";
-import colors from "../config/colors";
-import TextHeader from "../Components/TextHeader";
-import MyText from "../Components/MyText";
-import MiniText from "../Components/MiniText";
-import values from "../config/values";
-import MyTextInput from "../Components/MyTextInput";
-import { AntDesign } from "@expo/vector-icons";
+import { View, StyleSheet } from "react-native";
+import React from "react";
+// - - - - - - - - -  Custom Components  - - - - - - - - - - //
 import ClickableContainer from "../Components/ClickableContainer";
-import { LineChart } from "react-native-chart-kit";
 import TopBackBtn from "../Components/TopBackBtn";
+import MyText from "../Components/MyText";
+import Screen from "../Components/Screen";
+import colors from "../config/colors";
+import values from "../config/values";
+
+// ==============================================================
+// ExerciseTypeScreen:
+// - Categorizes exercises based on types (e.g., cardio, strength).
+// - Helps users explore exercises based on their fitness goals.
+// ==============================================================
 
 function ExerciseTypeScreen({ screenName, navigation, route }) {
 	const imagepath1 = require("../assets/sven-mieke-EuwD039Svug-unsplash.jpg");
@@ -52,8 +43,26 @@ function ExerciseTypeScreen({ screenName, navigation, route }) {
 							});
 						}}
 					/>
-					<ClickableContainer title="Intermediate" img={imagepath2} />
-					<ClickableContainer title="Advanced" img={imagepath3} />
+					<ClickableContainer
+						title="Intermediate"
+						img={imagepath2}
+						onPress={() => {
+							navigation.navigate("ExercisesListScreen", {
+								screenName: route.params.screenName,
+								listType: "Intermediate",
+							});
+						}}
+					/>
+					<ClickableContainer
+						title="Advanced"
+						img={imagepath3}
+						onPress={() => {
+							navigation.navigate("ExercisesListScreen", {
+								screenName: route.params.screenName,
+								listType: "Advanced",
+							});
+						}}
+					/>
 				</View>
 			</View>
 		</Screen>

@@ -1,29 +1,39 @@
-import { Text, View, Image, StyleSheet, Button } from "react-native";
-import React, { Component } from "react";
-import img from "../assets/gym.png";
-import Screen from "../Components/Screen";
-import MyButton from "../Components/MyButton";
+import { Image, StyleSheet } from "react-native";
+import React from "react";
 import colors from "../config/colors";
-import TextHeader from "../Components/TextHeader";
-import MyText from "../Components/MyText";
-import MiniText from "../Components/MiniText";
+import img from "../assets/gym.png";
 import values from "../config/values";
+// - - - - - - - - -  Custom Components  - - - - - - - - - - //
+import TextHeader from "../Components/TextHeader";
+import MyButton from "../Components/MyButton";
+import MiniText from "../Components/MiniText";
+import Screen from "../Components/Screen";
+
+// ==============================================================
+// StartupScreen:
+// - Appears briefly during app startup.
+// - May display the app logo, name, or a welcome message.
+// ==============================================================
 
 const StartupScreen = ({ navigation }) => {
 	return (
 		<Screen style={styles.screen}>
-			{/* <View style={{ backgroundColor: "pink", marginVertical: "25%" }}> */}
+			{/* MAIN LOGO IMAGE */}
 			<Image source={img} style={styles.img} />
 			<TextHeader>Fitnify</TextHeader>
+			{/* TAGLINE */}
 			<MiniText style={{ height: 18, marginVertical: 2 }}>
 				Sweat now, shine later.
 			</MiniText>
-			{/* </View> */}
+			{/* BOTTOM BUTTON [ABSOLUTE] */}
 			<MyButton
 				color={colors.asliBlack}
 				title="Get Started"
 				textColor={colors.secondary}
-				style={{ position: "absolute", bottom: values.bottomMargin }}
+				style={{
+					position: "absolute",
+					bottom: values.bottomMargin + values.bottomMargin,
+				}}
 				onPress={() => {
 					navigation.navigate("GetStartedScreen");
 				}}
@@ -37,10 +47,12 @@ const styles = StyleSheet.create({
 		height: 200,
 		borderRadius: 200,
 		marginVertical: 10,
-
-		//borderWidth: 5,
-		//borderColor: colors.black,
 	},
-	screen: { alignItems: "center", justifyContent: "center" },
+	screen: {
+		alignItems: "center",
+		justifyContent: "center",
+		margin: 0,
+		paddingTop: 0,
+	},
 });
 export default StartupScreen;

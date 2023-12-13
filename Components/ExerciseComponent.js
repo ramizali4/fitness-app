@@ -14,7 +14,7 @@ const ExerciseComponent = ({ name, source, onPress }) => {
 			<AnimatedLottieView
 				style={styles.gifContainer}
 				autoPlay
-				source={source}
+				source={{ uri: source }}
 			/>
 
 			<MiniText style={{ height: 20, color: colors.pureWhite }}>
@@ -43,7 +43,7 @@ const styles = StyleSheet.create({
 		height: 150,
 		borderRadius: values.borderRadius,
 		borderColor: colors.asliBlack,
-		backgroundColor: colors.asliBlack,
+		backgroundColor: colors.pureWhite,
 		overflow: "hidden",
 	},
 	imgContainer: {

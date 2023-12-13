@@ -1,17 +1,25 @@
-import { View, Text, StyleSheet } from "react-native";
+import { View, StyleSheet } from "react-native";
 import React from "react";
-import Screen from "../Components/Screen";
-import TopBackBtn from "../Components/TopBackBtn";
+import { userState } from "../firebase";
 import values from "../config/values";
 import colors from "../config/colors";
-import MyText from "../Components/MyText";
+// - - - - - - - - -  Custom Components  - - - - - - - - - - //
 import MyTextInput from "../Components/MyTextInput";
+import TopBackBtn from "../Components/TopBackBtn";
 import MyButton from "../Components/MyButton";
-import { userState } from "../firebase";
+import Screen from "../Components/Screen";
+import MyText from "../Components/MyText";
+
+// ==============================================================
+// EditProfileScreen:
+// - Allows users to edit and update their profile information.
+// - Provides options to modify personal details.
+// ==============================================================
 
 const EditProfileScreen = () => {
 	return (
 		<Screen>
+			{/* HEADER */}
 			<View style={styles.header}>
 				<TopBackBtn
 					size={values.smallbtn}
@@ -20,7 +28,7 @@ const EditProfileScreen = () => {
 				<MyText>EDIT PROFILE</MyText>
 			</View>
 			<View style={styles.container}>
-				{/* <View> */}
+				{/* <View> Input Fields that can be modified*/}
 				<MyTextInput nameplate="Email" value={userState.email} />
 				<MyTextInput
 					nameplate="Password"
@@ -29,8 +37,8 @@ const EditProfileScreen = () => {
 				/>
 				<MyTextInput nameplate="Weight" value={userState.weight} />
 				<MyTextInput nameplate="Height" value={userState.height} />
-				{/* </View> */}
 			</View>
+			{/* FOOTER with save button*/}
 			<MyButton
 				style={{
 					position: "absolute",

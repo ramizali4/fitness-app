@@ -1,25 +1,25 @@
-import {
-	Text,
-	View,
-	Image,
-	StyleSheet,
-	Button,
-	TouchableOpacity,
-} from "react-native";
-import React, { Component } from "react";
+import { View, Image, StyleSheet, TouchableOpacity } from "react-native";
+import React from "react";
+import colors from "../config/colors";
+import values from "../config/values";
 import Logoimg from "../assets/gym.png";
 import img from "../assets/pedro-araujo-PDjYClxmnyk-unsplash.jpg";
-import Screen from "../Components/Screen";
-import MyButton from "../Components/MyButton";
-import colors from "../config/colors";
+// - - - - - - - - -  Custom Components  - - - - - - - - - - //
 import TextHeader from "../Components/TextHeader";
-import MyText from "../Components/MyText";
 import MiniText from "../Components/MiniText";
-import values from "../config/values";
+import MyButton from "../Components/MyButton";
+import Screen from "../Components/Screen";
+
+// ==============================================================
+// GetStartedScreen:
+// - Offers information or guidance to users on getting started with the app.
+// - May include introductory tutorials or onboarding steps.
+// ==============================================================
 
 const GetStartedScreen = ({ navigation }) => {
 	return (
 		<Screen style={styles.screen}>
+			{/* BG IMAGE */}
 			<View
 				style={{
 					flex: 0.65,
@@ -53,6 +53,7 @@ const GetStartedScreen = ({ navigation }) => {
 							// top: "40%",
 						}}
 					>
+						{/* LOGO IMG [ABSOLUTE] */}
 						<Image
 							style={{
 								// backgroundColor: "black",
@@ -78,6 +79,7 @@ const GetStartedScreen = ({ navigation }) => {
 					</TextHeader>
 				</View>
 			</View>
+			{/* BOTTOM CONTAINER TEXT X BUTTONS */}
 			<View
 				style={{
 					flex: 0.35,
@@ -117,15 +119,11 @@ const styles = StyleSheet.create({
 	img: {
 		width: "100%",
 		height: "100%",
-
-		//borderWidth: 5,
-		//borderColor: colors.black,
 	},
 	screen: {
 		flex: 1,
 		alignItems: "center",
 		paddingTop: 0,
-		// backgroundColor: colors.grey,
 	},
 });
 export default GetStartedScreen;

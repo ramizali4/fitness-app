@@ -1,38 +1,27 @@
-import {
-	animationProgress,
-	View,
-	StyleSheet,
-	Button,
-	Animated,
-	Easing,
-	Text,
-} from "react-native";
-import React, { Component, useEffect, useRef, useState } from "react";
-import img from "../assets/icon.png";
-import Screen from "../Components/Screen";
-import MyButton from "../Components/MyButton";
+import { View, StyleSheet, Animated, Text } from "react-native";
+import React, { useEffect, useRef, useState } from "react";
+import LottieView from "lottie-react-native";
 import colors from "../config/colors";
-import TextHeader from "../Components/TextHeader";
+import values from "../config/values";
+// - - - - - - - - -  Custom Components  - - - - - - - - - - //
+import Screen from "../Components/Screen";
 import MyText from "../Components/MyText";
 import MiniText from "../Components/MiniText";
-import values from "../config/values";
-import LottieView from "lottie-react-native";
 import TopBackBtn from "../Components/TopBackBtn";
 
+// ===============================================================
+// Sends an objectID
+// of the Exercise and
+// extract name, gif path
+// Desription,Targeted Body Part (e.g., chest, abs, etc.)
+//	gifPath = require("../assets/Gifs/Loading hands.json");
+// ===============================================================
 function ExerciseScreen({ ExerciseName, route, navigation }) {
-	// Sends an objectID
-	// of the Exercise and
-	// extract name, gif path
-	// Desription,Targeted Body Part (e.g., chest, abs, etc.)
-	//	gifPath = require("../assets/Gifs/Loading hands.json");
-
 	const AnimatedLottieView = Animated.createAnimatedComponent(LottieView);
 
 	const animationRef = useRef(null);
-	const animRef = useRef < LottieView > null;
 	const animationProgress = useRef(new Animated.Value(0));
 	const [gifPath, setgifPath] = useState("");
-	//const lottieRef = (useRef < AnimatedLottieView) | (null > null);
 
 	const initialSeconds = 10; // Set your desired initial seconds
 	const [seconds, setSeconds] = useState(initialSeconds);
@@ -74,7 +63,7 @@ function ExerciseScreen({ ExerciseName, route, navigation }) {
 	};
 
 	return (
-		<Screen style={{ backgroundColor: colors.main }}>
+		<Screen style={{ backgroundColor: colors.pureWhite }}>
 			{/* Header */}
 			<View style={styles.header}>
 				<TopBackBtn
@@ -88,21 +77,21 @@ function ExerciseScreen({ ExerciseName, route, navigation }) {
 			{/* Exercise*/}
 			<View style={styles.exerciseContainer}>
 				{/* A viewable gif on repeat */}
-
 				{gifPath ? (
 					<LottieView
 						style={styles.exerciseGIF}
 						//ref={lottieRef}
-						source={gifPath}
+						source={{ uri: gifPath }}
 						autoPlay={true}
 						loop={true}
 						speed={1}
 						renderMode={"SOFTWARE"}
 					/>
 				) : (
+					// A loading Gif when the actual is being loaded from DB //
 					<AnimatedLottieView
 						//ref={animationRef}
-						source={require("../assets/Gifs/Loading hands.json")} // Replace with the loading animation JSON file
+						source={require("../assets/Gifs/Loading hands.json")}
 						autoPlay={true} // Auto-play the loading animation
 						loop={true}
 						style={styles.exerciseGIF}
@@ -148,7 +137,6 @@ function ExerciseScreen({ ExerciseName, route, navigation }) {
 						Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
 						eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim
 						ad minim veniam, quis nostrud exercitation
-						
 					</MiniText>
 				</View>
 				{/* A random motivation text */}
@@ -165,10 +153,7 @@ function ExerciseScreen({ ExerciseName, route, navigation }) {
 
 const styles = StyleSheet.create({
 	Descriptiontxt: {
-		//	width: "80%",
-		//	alignSelf: "center",
 		textAlign: "center",
-		//backgroundColor: "lightyellow",
 		fontSize: 12,
 		fontFamily: "Integralcf_regular",
 		marginVertical: 8,
@@ -176,25 +161,19 @@ const styles = StyleSheet.create({
 	exerciseContainer: {
 		flex: 0.4,
 		paddingHorizontal: 10,
-		backgroundColor: colors.main,
-		//	backgroundColor: "lightgreen",
+		backgroundColor: colors.pureWhite,
 		flexDirection: "row",
 		alignItems: "center",
 		justifyContent: "center",
 	},
 	exerciseGIF: {
-		//flex: 0.5,
 		width: "80%",
 		height: "80%",
-		//	backgroundColor: "lightblue",
-		//alignSelf: "center",
-		//alignItems: "center",
 		justifyContent: "center",
 		overflow: "hidden",
 		left: 15,
 	},
 	header: {
-		//	backgroundColor: colors.black,
 		flex: 0.1,
 		flexDirection: "row",
 		alignItems: "center",
@@ -209,7 +188,6 @@ const styles = StyleSheet.create({
 	},
 	motivationtxt: {
 		width: "80%",
-		//	alignSelf: "center",
 		textAlign: "center",
 		//	backgroundColor: colors.secondary,
 		fontFamily: "Integralcf_bold",
@@ -223,7 +201,6 @@ const styles = StyleSheet.create({
 		fontSize: 56,
 		height: 86,
 		color: colors.asliBlack,
-		//	backgroundColor: "red",
 	},
 });
 export default ExerciseScreen;

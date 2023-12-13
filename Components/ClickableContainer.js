@@ -14,7 +14,7 @@ import values from "../config/values";
 function ClickableContainer({ title, img, style, onPress, ...otherProps }) {
 	return (
 		<TouchableOpacity style={styles.container} onPress={onPress}>
-			<Image source={img} style={styles.container} />
+			<Image source={img} style={styles.imgContainer} />
 			<View style={styles.title}>
 				<MyText
 				//style={{ color: colors.secondary }}
@@ -37,6 +37,16 @@ const styles = StyleSheet.create({
 		borderColor: colors.secondary,
 		marginBottom: 20,
 		elevation: 10,
+	},
+	imgContainer: {
+		alignSelf: "center",
+		width: 335,
+		height: 185,
+		backgroundColor: colors.asliBlack,
+		borderRadius: values.borderRadius,
+		borderWidth: 3,
+		borderColor: colors.secondary,
+		marginBottom: 20,
 	},
 	title: {
 		backgroundColor: "white",

@@ -1,22 +1,19 @@
-import {
-	animationProgress,
-	View,
-	StyleSheet,
-	Button,
-	Animated,
-	Easing,
-	Text,
-	TouchableOpacity,
-} from "react-native";
-import React, { Component, useEffect, useRef, useState } from "react";
-import img from "../assets/icon.png";
+import { View, StyleSheet, TouchableOpacity } from "react-native";
+import React from "react";
+import { userState } from "../firebase";
+import colors from "../config/colors";
+// - - - - - - - - -  Custom Components  - - - - - - - - - - //
 import Screen from "../Components/Screen";
 import MyButton from "../Components/MyButton";
-import colors from "../config/colors";
 import TextHeader from "../Components/TextHeader";
 import MyText from "../Components/MyText";
 import MiniText from "../Components/MiniText";
-import { userState } from "../firebase";
+
+// ==============================================================
+// UserProfileScreen:
+// - Shows the user's profile information.
+// - Includes details such as username, profile picture, and achievements.
+// ==============================================================
 const UserProfileScreen = ({ route, navigation }) => {
 	return (
 		<Screen>

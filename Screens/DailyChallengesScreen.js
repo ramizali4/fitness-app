@@ -1,29 +1,24 @@
 import {
-	animationProgress,
 	View,
 	StyleSheet,
-	Button,
-	Animated,
-	Easing,
-	Text,
 	TouchableOpacity,
 	FlatList,
+	Text,
 } from "react-native";
-import React, { Component, useEffect, useRef, useState } from "react";
-import img from "../assets/icon.png";
-import Screen from "../Components/Screen";
-import MyButton from "../Components/MyButton";
+import React, { useState } from "react";
+// - - - - - - - - -  Custom Components  - - - - - - - - - - //
 import colors from "../config/colors";
 import TextHeader from "../Components/TextHeader";
-import MyText from "../Components/MyText";
 import MiniText from "../Components/MiniText";
-import values from "../config/values";
-import LottieView from "lottie-react-native";
-import TopBackBtn from "../Components/TopBackBtn";
-import MyTextInput from "../Components/MyTextInput";
+
+// ============================================================
+// DailyChallengesScreen:
+// - Displays a list of daily challenges.
+// - Users can interact with and complete these challenges.
+// ============================================================
 
 const DailyChallengesScreen = ({ route, navigation }) => {
-	const data = [
+	const [data, setData] = useState([
 		{
 			name: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt",
 		},
@@ -33,7 +28,40 @@ const DailyChallengesScreen = ({ route, navigation }) => {
 		{
 			name: "Do 5 push-ups in the early in the morning",
 		},
-	];
+	]);
+
+	const [IncompleteData, setIncompleteData] = useState([
+		{
+			name: "Take a 15-minute brisk walk around your neighborhood.",
+		},
+		{
+			name: "Write down three things you're grateful for today.",
+		},
+		{
+			name: "Try a new type of fruit or vegetable that you've never eaten before.",
+		},
+		{
+			name: "Perform 10 minutes of stretching exercises before bedtime.",
+		},
+		{
+			name: "Challenge yourself to drink at least 8 glasses of water throughout the day.",
+		},
+	]);
+
+	// handles on press events for challenges
+	const handlePress = (item) => {
+		// Remove the item from incompleteData
+		const updatedIncompleteData = IncompleteData.filter(
+			(challenge) => challenge !== item,
+		);
+
+		// Add the item to data
+		const updatedData = [...data, item];
+
+		// Update state
+		setIncompleteData(updatedIncompleteData);
+		setData(updatedData);
+	};
 	return (
 		<View style={styles.screen}>
 			{/* Header */}
@@ -41,17 +69,23 @@ const DailyChallengesScreen = ({ route, navigation }) => {
 				<TextHeader style={styles.headertxt1}>DAILY CHALLENGES</TextHeader>
 			</View>
 			<View style={styles.container}>
+				{/* Today Incompleted Tasks */}
 				<TextHeader style={{ marginBottom: 10 }}>TODAY</TextHeader>
 				<FlatList
-					data={data}
+					data={IncompleteData}
 					renderItem={({ item }) => (
-						<TouchableOpacity>
+						<TouchableOpacity
+							style={{ flexDirection: "row" }}
+							onPress={handlePress}
+						>
+							<Text>{item.count}</Text>
 							<MiniText style={{ height: "auto", marginVertical: 2 }}>
 								{item.name}
 							</MiniText>
 						</TouchableOpacity>
 					)}
 				/>
+				{/* Completed Tasks */}
 				<TextHeader style={{ marginVertical: 10 }}>COMPLETED</TextHeader>
 				<FlatList
 					data={data}
@@ -79,12 +113,8 @@ const styles = StyleSheet.create({
 	container: {
 		flex: 0.8,
 		paddingHorizontal: 10,
-		//backgroundColor: colors.main,
-		//	backgroundColor: "lightgreen",
 		marginHorizontal: 15,
 		marginTop: 30,
-		//	alignItems: "center",
-		//justifyContent: "center",
 	},
 	header: {
 		backgroundColor: colors.asliBlack,
@@ -112,13 +142,6 @@ const styles = StyleSheet.create({
 		justifyContent: "center",
 		alignItems: "center",
 		color: colors.secondary,
-		// textAlign: "center",
-		// position: "absolute",
-		//	width: "100%",
-		//  fontWeight:'inte'
-		// textDecorationLine: "underline",
-		// textDecorationColor: colors.asliBlack,
-		// textDecorationStyle: "solid",
 	},
 	headertxt2: {
 		alignSelf: "center",

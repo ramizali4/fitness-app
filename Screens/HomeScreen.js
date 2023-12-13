@@ -1,25 +1,28 @@
 import {
 	Text,
 	View,
-	Image,
 	StyleSheet,
 	Button,
-	TouchableOpacity,
 	ScrollView,
 	Dimensions,
 } from "react-native";
-import React, { Component } from "react";
+import React from "react";
 import Constants from "expo-constants";
 import { LineChart } from "react-native-chart-kit";
+import { userState } from "../firebase";
 import values from "../config/values";
 import colors from "../config/colors";
-
-import Screen from "../Components/Screen";
-import TextHeader from "../Components/TextHeader";
+// - - - - - - - - -  Custom Components  - - - - - - - - - - //
 import ClickableContainer from "../Components/ClickableContainer";
+import TextHeader from "../Components/TextHeader";
 import SafeView from "../Components/SafeView";
-import { ref, set } from "firebase/database";
+import Screen from "../Components/Screen";
 
+// ==============================================================
+// HomeScreen:
+// - Serves as the main screen upon app launch.
+// - Displays a personalized dashboard with key information and features.
+// ==============================================================
 function HomeScreen({ navigation }) {
 	const imagepath1 = require("../assets/street-workout-2629182_1920.jpg");
 	const imagepath2 = require("../assets/carl-barcelo-nqUHQkuVj3c-unsplash.jpg");
@@ -36,7 +39,7 @@ function HomeScreen({ navigation }) {
 				</TextHeader>
 				<View style={styles.levelContainer}>
 					<Text style={{ color: colors.pureWhite }}>Level </Text>
-					<Text style={{ color: colors.pureWhite }}>2</Text>
+					<Text style={{ color: colors.pureWhite }}>{userState.level}</Text>
 				</View>
 			</View>
 
@@ -155,7 +158,6 @@ function HomeScreen({ navigation }) {
 							})
 						}
 					/>
-					{/* <Image source={require("../assets/icon.png")} /> */}
 				</View>
 				<SafeView />
 			</ScrollView>

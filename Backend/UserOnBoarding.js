@@ -3,6 +3,7 @@ import * as firebase from "firebase/app";
 import { getDatabase, onValue, ref, set } from "firebase/database";
 
 import { getAnalytics } from "firebase/analytics";
+// import { initializeApp } from "firebase/app";
 import {
 	GoogleAuthProvider,
 	createUserWithEmailAndPassword,
@@ -197,23 +198,4 @@ export const login = async (email, password) => {
 		}
 		return { error: { code: errorCode, message: errorMessage } };
 	}
-};
-
-export const loadExercises = async () => {
-	return new Promise((resolve, reject) => {
-		const exercisesRef = ref(db, "exercise");
-
-		onValue(
-			exercisesRef,
-			(snapshot) => {
-				const data = snapshot.val();
-				console.log("data", data);
-				resolve(data ? Object.values(data) : []);
-			},
-			(error) => {
-				console.error("Error reading exercises:", error);
-				reject(error);
-			},
-		);
-	});
 };

@@ -1,20 +1,19 @@
-import {
-	Text,
-	View,
-	Image,
-	StyleSheet,
-	Button,
-	TouchableOpacity,
-} from "react-native";
+import { View, Image, StyleSheet, TouchableOpacity } from "react-native";
 import React, { Component } from "react";
 import img from "../assets/icon.png";
+import values from "../config/values";
+import colors from "../config/colors";
+// - - - - - - - - -  Custom Components  - - - - - - - - - - //
 import Screen from "../Components/Screen";
 import MyButton from "../Components/MyButton";
-import colors from "../config/colors";
 import TextHeader from "../Components/TextHeader";
-import MyText from "../Components/MyText";
 import MiniText from "../Components/MiniText";
-import values from "../config/values";
+
+// ==============================================================
+// WelcomeScreen:
+// - Greets users when they first enter the app.
+// - May include a brief introduction or call-to-action.
+// ==============================================================
 
 export class WelcomeScreen extends Component {
 	render() {
