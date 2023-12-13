@@ -37,7 +37,7 @@ const provider = new GoogleAuthProvider();
 const db = getDatabase(app);
 
 // States
-const userState = {
+export const userState = {
 	ID: "",
 	email: "",
 	password: "",
@@ -50,12 +50,11 @@ const userState = {
 export const setEmail = (newEmail) => {
 	userState.email = newEmail || "";
 
-	const atIndex = newEmail.indexOf("@");
-	userState.ID = atIndex !== -1 ? newEmail.substring(0, atIndex) : "";
+	userState.ID = newEmail.replace(/[.#$\[\]]/g, "x");
 };
 
 export const setPassword = (newPassword) => {
-	userState.password = newPassword || "";
+	userState.password = newPassword || "123456";
 };
 
 export const setGender = (newGender) => {
@@ -63,19 +62,19 @@ export const setGender = (newGender) => {
 };
 
 export const setWeight = (newWeight) => {
-	userState.weight = newWeight || 0;
+	userState.weight = newWeight || 42;
 };
 
 export const setHeight = (newHeight) => {
-	userState.height = newHeight || 0;
+	userState.height = newHeight || 76;
 };
 
 export const setAge = (newAge) => {
-	userState.age = newAge || 0;
+	userState.age = newAge || 25;
 };
 
 export const setLevel = (newLevel) => {
-	userState.level = newLevel || 0;
+	userState.level = newLevel || 1;
 };
 // const [email, setEmail] = useState("");
 // const [password, setPassword] = useState("");
@@ -183,6 +182,7 @@ export const login = async (email, password) => {
 		// Signed in
 		const user = userCredential.user;
 		console.log("User signed in:", user.email);
+		setEmail(user.email);
 		return user;
 	} catch (error) {
 		const errorCode = error.code;

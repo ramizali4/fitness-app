@@ -1,20 +1,31 @@
 import { View, Text, StyleSheet, ScrollView } from "react-native";
 import React from "react";
-import TopBackBtn from "../Components/TopBackBtn";
+import { createProfile } from "../firebase";
 import colors from "../config/colors";
 import values from "../config/values";
+// - - - - - - - - -  Custom Components  - - - - - - - - - - //
+import TopBackBtn from "../Components/TopBackBtn";
+import MyButton from "../Components/MyButton";
 import MyText from "../Components/MyText";
 import Screen from "../Components/Screen";
-import MyButton from "../Components/MyButton";
-import SafeView from "../Components/SafeView";
-import { createProfile } from "../firebase";
+
+// ==============================================================================
+// An essential screen for Privacy Policy //
+// Dummy text is used for now, can be edited with real policies and licences
+// It also contains an Accept button to move forward to next screen, After
+// accepting it creates the user data and stores in Firebase.
+// ==============================================================================
 
 const PrivacyPolicyScreen = ({ navigation }) => {
+	// Handles the acceptance of the user data and stores in Firebase.
+	// and navigates to the Home Screen of  the app
 	const handleConfirm = () => {
 		createProfile();
+		navigation.navigate("Tab");
 	};
 	return (
 		<Screen>
+			{/* Header Section */}
 			<View style={styles.header}>
 				<TopBackBtn
 					size={values.smallbtn}
@@ -22,6 +33,7 @@ const PrivacyPolicyScreen = ({ navigation }) => {
 				/>
 				<MyText style={styles.headertxt}>Privacy Policy</MyText>
 			</View>
+			{/* Scrollable Privacy Policy */}
 			<ScrollView
 				style={{
 					flex: 0.9,
@@ -33,6 +45,7 @@ const PrivacyPolicyScreen = ({ navigation }) => {
 				<Text style={{ fontWeight: "900", fontSize: 14, marginBottom: 10 }}>
 					The standard Lorem Ipsum passage, used since the 1500s
 				</Text>
+				{/* Lorem Ipsum dummy text */}
 				<Text>
 					Lorem ipsum dolor sit amet, consectetura adipiscing elit, sed do
 					eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
@@ -75,6 +88,7 @@ const PrivacyPolicyScreen = ({ navigation }) => {
 					maiores alias consequatur aut perferendis doloribus asperiores
 					repellat."
 				</Text>
+				{/* Footer Acceptance Button */}
 				<View style={styles.btnContainer}>
 					<MyButton
 						color={colors.asliBlack}

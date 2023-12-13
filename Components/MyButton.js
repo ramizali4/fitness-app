@@ -1,10 +1,12 @@
 import React from "react";
-import { TouchableOpacity, StyleSheet, Text, View } from "react-native";
-import { AntDesign } from "@expo/vector-icons";
-import MyText from "./MyText";
+import { TouchableOpacity, StyleSheet } from "react-native";
 import colors from "../config/colors";
 import MiniText from "./MiniText";
-
+// =================================================
+// This is the default to be used for every screen
+// has props for changeing the title of the button
+// and onPress events.
+// =================================================
 function MyButton({
 	fontStyle,
 	title,
@@ -34,11 +36,8 @@ function MyButton({
 const styles = StyleSheet.create({
 	button: {
 		padding: 10,
-		//	paddingVertical: 10,
-		//alignItems: "center",
 		width: 150,
 		height: 50,
-		//justifyContent: "center",
 		elevation: 2,
 		marginVertical: 15,
 		justifyContent: "center",
@@ -46,11 +45,8 @@ const styles = StyleSheet.create({
 	text: {
 		fontFamily: "Integralcf_medium",
 		color: colors.white,
-		//flex: 1,
-		//fontSize: 12,
 		textAlign: "center",
 		height: 18,
-		//backgroundColor: "red",
 	},
 });
 

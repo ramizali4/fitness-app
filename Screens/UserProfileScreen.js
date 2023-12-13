@@ -16,11 +16,7 @@ import colors from "../config/colors";
 import TextHeader from "../Components/TextHeader";
 import MyText from "../Components/MyText";
 import MiniText from "../Components/MiniText";
-import values from "../config/values";
-import LottieView from "lottie-react-native";
-import TopBackBtn from "../Components/TopBackBtn";
-import MyTextInput from "../Components/MyTextInput";
-
+import { userState } from "../firebase";
 const UserProfileScreen = ({ route, navigation }) => {
 	return (
 		<Screen>
@@ -30,10 +26,7 @@ const UserProfileScreen = ({ route, navigation }) => {
 				<TextHeader style={styles.headertxt2}>Profile</TextHeader>
 			</View>
 			<View style={styles.container}>
-				{/* <MiniText style={styles.text}>Your Name</MiniText> */}
-				<MiniText style={styles.text}>
-					LoremUpsum <Text style={{ fontFamily: "" }}>@</Text>gmail.com
-				</MiniText>
+				<MiniText style={styles.text}>{userState.email}</MiniText>
 				<MiniText style={styles.text}>BMI:</MiniText>
 				<View style={{ flexDirection: "row", justifyContent: "space-between" }}>
 					<View
@@ -112,13 +105,6 @@ const styles = StyleSheet.create({
 		padding: 5,
 		borderBottomWidth: 1,
 		fontFamily: "Integralcf_heavy",
-		//	textAlign: "center",
-		//position: "absolute",
-		//	width: "100%",
-		//  fontWeight:'inte'
-		// textDecorationLine: "underline",
-		// textDecorationColor: colors.asliBlack,
-		// textDecorationStyle: "solid",
 	},
 	headertxt2: {
 		alignSelf: "center",
@@ -127,6 +113,6 @@ const styles = StyleSheet.create({
 		borderBottomWidth: 1,
 		padding: 5,
 	},
-	text: { marginVertical: 8, height: 20 },
+	text: { marginVertical: 8, height: 20, fontFamily: "Integralcf_regular" },
 });
 export default UserProfileScreen;

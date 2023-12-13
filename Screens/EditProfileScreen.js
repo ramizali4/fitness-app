@@ -7,6 +7,7 @@ import colors from "../config/colors";
 import MyText from "../Components/MyText";
 import MyTextInput from "../Components/MyTextInput";
 import MyButton from "../Components/MyButton";
+import { userState } from "../firebase";
 
 const EditProfileScreen = () => {
 	return (
@@ -20,10 +21,14 @@ const EditProfileScreen = () => {
 			</View>
 			<View style={styles.container}>
 				{/* <View> */}
-				<MyTextInput nameplate="Email" value="rgrg" />
-				<MyTextInput nameplate="Password" secureTextEntry value="rgrg" />
-				<MyTextInput nameplate="Weight" value="45" />
-				<MyTextInput nameplate="Height" value="20" />
+				<MyTextInput nameplate="Email" value={userState.email} />
+				<MyTextInput
+					nameplate="Password"
+					secureTextEntry
+					value={userState.password}
+				/>
+				<MyTextInput nameplate="Weight" value={userState.weight} />
+				<MyTextInput nameplate="Height" value={userState.height} />
 				{/* </View> */}
 			</View>
 			<MyButton
